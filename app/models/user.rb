@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
 
-client = Goodreads::Client.new(:api_key => 'UpIly3BURwhZ52tmj4ag', :api_secret => 'vIlBCRroZ5Esfn4RRQxY7Sd8sfOx7wOvtWY6thJfqQ')
+# client = Goodreads::Client.new(:api_key => 'UpIly3BURwhZ52tmj4ag', :api_secret => 'vIlBCRroZ5Esfn4RRQxY7Sd8sfOx7wOvtWY6thJfqQ')
 
 
 
 
-def self.review = client.review('id')
+# # def self.review = client.review('id')
 
-end
+# # end
 
 
 def self.from_omniauth(auth, code)
