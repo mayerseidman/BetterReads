@@ -36,9 +36,14 @@ def self.create_with_omniauth(auth)
   
 end
 
+ 
+  def search(query)
 
-  def goodreads
-    @goodreads ||= Goodreads::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret)
+    @client = Goodreads::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret)
+  
   end
+
+
+
 end  
 
