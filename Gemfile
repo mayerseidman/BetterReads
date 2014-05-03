@@ -14,7 +14,7 @@ gem 'multi_xml'
 gem 'omniauth-oauth'
 
 gem 'unirest'
-
+gem 'figaro'
 gem 'hirb'
 
 gem 'better_errors'
