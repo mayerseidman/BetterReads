@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
 
 gem 'omniauth-goodreads', require: 'omniauth-goodreads'
+gem 'goodreads'
 gem 'multi_xml'
 gem 'omniauth-oauth'
 
