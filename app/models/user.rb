@@ -1,27 +1,5 @@
 class User < ActiveRecord::Base
 
-# client = Goodreads::Client.new(:api_key => 'UpIly3BURwhZ52tmj4ag', :api_secret => 'vIlBCRroZ5Esfn4RRQxY7Sd8sfOx7wOvtWY6thJfqQ')
-
-
-
-
-# # def self.review = client.review('id')
-
-# # end
-
-
-# def self.from_omniauth(auth, code)
-#   where(auth.slice(:provider, :uid)).first_or_create do |user|
-#     user.provider = auth.provider
-#     user.uid = auth.uid
-#     user.name = auth.info.name
-#     user.email = auth.info.email
-#     user.auth_code = code
-#     user.picture = auth.info.image
-#     user.refresh_token = auth.credentials.refresh_token
-#   end
-# end
-
 def self.create_with_omniauth(auth)
   user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
   # create! do |user|
@@ -36,6 +14,13 @@ def self.create_with_omniauth(auth)
   
 end
 
+def client
+    consumer = OAuth::Consumer.new(GOODREADS_API_KEY,
+                                   GOODREADS_API_SECRET,
+                                   :site => 'http://www.goodreads.com')
+    access_token = OAuth::AccessToken.new(consumer, oauth_access_token, oauth_access_secret)
+    Goodreads::Client.new(oauth_token: access_token, api_key: GOODREADS_API_KEY, api_secret: GOODREADS_API_SECRET)
+end
 
 end  
 
