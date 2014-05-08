@@ -10,5 +10,6 @@ Omniauthpls::Application.routes.draw do
  
   get '/auth/:goodreads/callback', :to => 'sessions#create'
   root :to => "users#show"
+  get 'signout', to: 'sessions#destroy', as: 'signout'
 
 end
