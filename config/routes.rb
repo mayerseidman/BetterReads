@@ -9,6 +9,6 @@ Omniauthpls::Application.routes.draw do
   # get "users/show"
  
   get '/auth/:goodreads/callback', :to => 'sessions#create'
-  root :to => "users#index"
+  root :to => "users#show"
 
 end
