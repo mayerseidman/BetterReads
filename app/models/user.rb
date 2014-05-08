@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
 
     def self.create_with_omniauth(auth)
-      user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
-      # create! do |user|
+      user = where(auth.slice("provider", "uid")).first_or_create do |user|
         user.provider = auth["provider"]
         user.uid = auth["uid"]
         user.name = auth["info"]["name"]
@@ -11,7 +10,7 @@ class User < ActiveRecord::Base
         user.oauth_secret = auth["credentials"]["secret"]
         user.save!
         user
-      
+    end  
     end
 end  
 
