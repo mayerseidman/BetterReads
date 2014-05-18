@@ -1,17 +1,75 @@
-<!-- 
-<%= @reviews %>
-<%= @total %>
-<%= @group_list %>
-<%= @members %>
-<%= @group %>  -->
+
 
 <h1>Listing users</h1>
 
-<%= @group_list.group[0].title %><br>
 
 <% x = 0 %>
+<%= @auth_data %>
+<%= @fun %>
 <% @name.each do |member| %>
   <% x += 1 %>
   <%= x %>:<%= member %><br>
+  <%= @city[x-1] %><br>
 <% end %> 
-        <img style="size: 900x1900" border="0" text-align="center" src="//maps.googleapis.com/maps/api/staticmap?center=78702&amp;size=600x600&amp;sensor=false&amp;zoom=1&amp;markers=color:blue%7Clabel:<%=@location[@group[0]]%>%7C2901$<%= @group[0] %>&amp;markers=color:red%7Clabel:<%=@location[@group[1]]%>%7C2901$<%= @group[1] %>&amp;markers=color:brown%7Clabel:<%=@location[@group[2]]%>%7C2901$<%= @group[2] %>&amp;markers=color:green%7Clabel:<%=@location[@group[3]]%>%7C2901$<%= @group[3] %>&amp;markers=color:green%7Clabel:<%=@location[@group[4]]%>%7C2901$<%= @group[4] %>&amp;markers=color:red%7Clabel:<%=@location[@group[5]]%>%7C2901$<%= @group[5] %>&amp;markers=color:red%7Clabel:<%=@location[@group[6]]%>%7C2901$<%= @group[6] %>&amp;markers=color:red%7Clabel:<%=@location[@group[7]]%>%7C2901$<%= @group[7] %>&amp;markers=color:red%7Clabel:<%=@location[@group[8]]%>%7C2901$<%= @group[8] %>&amp;markers=color:red%7Clabel:<%=@location[@group[9]]%>%7C2901$<%= @group[9] %>&amp;markers=color:red%7Clabel:<%=@location[@group[10]]%>%7C2901$<%= @group[10] %>&amp;markers=color:red%7Clabel:<%=@location[@group[11]]%>%7C2901$<%= @group[11] %>&amp;markers=color:red%7Clabel:<%=@location[@group[12]]%>%7C2901$<%= @group[12] %>&amp;markers=color:red%7Clabel:<%=@location[@group[13]]%>%7C2901$<%= @group[13] %>&amp;markers=color:red%7Clabel:<%=@location[@group[14]]%>%7C2901$<%= @group[14] %>&amp;markers=color:red%7Clabel:<%=@location[@group[15]]%>%7C2901$<%= @group[15] %>&amp;markers=color:red%7Clabel:<%=@location[@group[16]]%>%7C2901$<%= @group[16] %>&amp;markers=color:red%7Clabel:<%=@location[@group[17]]%>%7C2901$<%= @group[17] %>&amp;markers=color:red%7Clabel:<%=@location[@group[18]]%>%7C2901$<%= @group[18] %>&amp;markers=color:red%7Clabel:<%=@location[@group[19]]%>%7C2901$<%= @group[19] %>&amp;markers=color:red%7Clabel:<%=@location[@group[20]]%>%7C2901$<%= @group[20] %>&amp;markers=color:red%7Clabel:<%=@location[@group[21]]%>%7C2901$<%= @group[21] %>&amp;markers=color:red%7Clabel:<%=@location[@group[22]]%>%7C2901$<%= @group[22] %>&amp;markers=color:red%7Clabel:<%=@location[@group[23]]%>%7C2901$<%= @group[23] %>&amp;markers=color:red%7Clabel:<%=@location[@group[24]]%>%7C2901$<%= @group[24] %>&amp;markers=color:red%7Clabel:<%=@location[@group[25]]%>%7C2901$<%= @group[25] %>&amp;markers=color:red%7Clabel:<%=@location[@group[26]]%>%7C2901$<%= @group[26] %>&amp;markers=color:red%7Clabel:<%=@location[@group[27]]%>%7C2901$<%= @group[27] %>&amp;markers=color:red%7Clabel:<%=@location[@group[28]]%>%7C2901$<%= @group[28] %>&amp;markers=color:red%7Clabel:<%=@location[@group[29]]%>%7C2901$<%= @group[29] %>&amp;markers=color:red%7Clabel:<%=@location[@group[30]]%>%7C2901$<%= @group[30] %>&amp;markers=color:red%7Clabel:<%=@location[@group[31]]%>%7C2901$<%= @group[31] %>&amp;markers=color:red%7Clabel:<%=@location[@group[32]]%>%7C2901$<%= @group[32] %>&amp;markers=color:red%7Clabel:<%=@location[@group[33]]%>%7C2901$<%= @group[33] %>&amp;markers=color:red%7Clabel:<%=@location[@group[34]]%>%7C2901$<%= @group[34] %>&amp;markers=color:red%7Clabel:<%=@location[@group[35]]%>%7C2901$<%= @group[35] %>&amp;markers=color:red%7Clabel:<%=@location[@group[36]]%>%7C2901$<%= @group[36] %>" alt="Austin, TX">
+<script type="text/javascript">
+    function initialize() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          <% x = 0 %>
+          <% @name.each do |member| %>
+            {
+              "lat": "<%= @city[x][0] %>",
+              "lng": "<%= @city[x][1] %>",
+              // "picture": {
+              //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+              //   "width":  36,
+              //   "height": 36
+              // },
+              "infowindow": "+ <%= member %> +"
+            },
+            <% x < 16 ? x += 1 : x = 16 %>
+          <% end %>
+          // {
+          //   "lat": 0,
+          //   "lng": 42.85,
+          //   // "picture": {
+          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          //   //   "width":  36,
+          //   //   "height": 36
+          //   // },
+          //   "infowindow": "+ <%= @name[1] %> +"
+          // },
+          // {
+          //   "lat": -33.8695000,
+          //   "lng": 151.211000,
+          //   // "picture": {
+          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          //   //   "width":  36,
+          //   //   "height": 36
+          //   // },
+          //   "infowindow": "+ <%= @name[2] %> +"
+          // },
+          //   {
+          //   "lat": -33.8695000,
+          //   "lng": 151.211000,
+          //   // "picture": {
+          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          //   //   "width":  36,
+          //   //   "height": 36
+          //   // },
+          //   "infowindow": "+ <%= @name[3] %> +"
+          // }
+
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        zoom: 8;
+      });
+    }
+
+    google.maps.event.addDomListener(window, "load", initialize);
+  </script>
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
