@@ -19,15 +19,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @auth_data = omniauth.auth
-    @user = User.first
     client = Goodreads::Client.new(oauth_token: "ALIVGfWdLZYkh34NIKzVmw", api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
      @reviews = client.book_by_title("Moby Dick")
-     @group_list = client.group_list(11807848 , 'sort')
+     @group_list = client.group_list(current_user.uid, 'sort')
       # @group = client.group(106427)
       # @members = @group.group_members
 
-    url = "https://www.goodreads.com/group/#{@group_list.group[0].id}/members?format=xml&key=#{client.api_key}"
+    url = "https://www.goodreads.com/group/#{@group_list.group.id}/members?format=xml&key=#{client.api_key}"
     doc = Nokogiri::HTML(open(url))
     group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
     @group = group.map do |id| 
@@ -48,7 +46,7 @@ class UsersController < ApplicationController
         x = dic.xpath("//name")[0].text || "no name"
         @name << x
         y = Geocoder.coordinates dic.xpath("//location").text
-        if y.length < 2
+        if y.nil? 
           y = [0,0]
         end
         @city << y

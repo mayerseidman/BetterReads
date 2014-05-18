@@ -4,13 +4,16 @@
 
 
 <% x = 0 %>
-<%= @auth_data %>
-<%= @fun %>
+<%= @auth_data %><br>
+<%= @current_user.uid %><br>
+<%= @fun %><br>
 <% @name.each do |member| %>
   <% x += 1 %>
   <%= x %>:<%= member %><br>
   <%= @city[x-1] %><br>
 <% end %> 
+
+<!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
 <script type="text/javascript">
     function initialize() {
       handler = Gmaps.build('Google');
