@@ -9,14 +9,15 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
-gem 'omniauth-goodreads', require: 'omniauth-goodreads'
 gem 'goodreads'
+gem 'omniauth-goodreads', require: 'omniauth-goodreads'
 gem 'multi_xml'
 gem 'omniauth-oauth'
 
 gem 'unirest'
 gem 'figaro'
 gem 'hirb'
+
 
 gem 'better_errors'
 gem 'binding_of_caller'

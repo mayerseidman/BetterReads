@@ -16,17 +16,19 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def index
+   def index
     @user = User.first
-    client = Goodreads::Client.new(oauth_token: "ALIVGfWdLZYkh34NIKzVmw", api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
-     # @reviews = client.book_by_title("Moby Dick")
-     @group_list = client.group_list(11807848 , 'sort')
-      # @group = client.group(106427)
-      # @members = @group.group_members
-
+    
+    client = Goodreads::Client.new(oauth_token: "ALIVGfWdLZYkh34NIKzVmw", api_key:'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+      @reviews = client.book_by_title("Moby Dick")
+  #      @group_list = client.group_list(11807848 , 'sort')
+  #      # @group = client.group(1372251709)
+  #     # @members = @group.group_members
+ 
   end
+  
 
-def client
+  def client
     consumer = OAuth::Consumer.new(GOODREADS_API_KEY,
                                    GOODREADS_API_SECRET,
                                    :site => 'http://www.goodreads.com')
