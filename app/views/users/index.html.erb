@@ -1,7 +1,76 @@
 
-<%= @reviews %>
-<%= @total %>
-<%= @group_list %>
-<%= @members %>
-<%= @group %>
+
+<h1>Listing users</h1>
+
+
+<% x = 0 %>
+<%= @auth_data %>
+<%= @fun %>
+<% @name.each do |member| %>
+  <% x += 1 %>
+  <%= x %>:<%= member %><br>
+  <%= @city[x-1] %><br>
+<% end %> 
+<script type="text/javascript">
+    function initialize() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          <% x = 0 %>
+          <% @name.each do |member| %>
+            {
+              "lat": "<%= @city[x][0] %>",
+              "lng": "<%= @city[x][1] %>",
+              // "picture": {
+              //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+              //   "width":  36,
+              //   "height": 36
+              // },
+              "infowindow": "+ <%= member %> +"
+            },
+            <% x < 16 ? x += 1 : x = 16 %>
+          <% end %>
+          // {
+          //   "lat": 0,
+          //   "lng": 42.85,
+          //   // "picture": {
+          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          //   //   "width":  36,
+          //   //   "height": 36
+          //   // },
+          //   "infowindow": "+ <%= @name[1] %> +"
+          // },
+          // {
+          //   "lat": -33.8695000,
+          //   "lng": 151.211000,
+          //   // "picture": {
+          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          //   //   "width":  36,
+          //   //   "height": 36
+          //   // },
+          //   "infowindow": "+ <%= @name[2] %> +"
+          // },
+          //   {
+          //   "lat": -33.8695000,
+          //   "lng": 151.211000,
+          //   // "picture": {
+          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+          //   //   "width":  36,
+          //   //   "height": 36
+          //   // },
+          //   "infowindow": "+ <%= @name[3] %> +"
+          // }
+
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        zoom: 8;
+      });
+    }
+
+    google.maps.event.addDomListener(window, "load", initialize);
+  </script>
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
 

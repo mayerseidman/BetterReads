@@ -17,6 +17,10 @@ gem 'omniauth-oauth'
 gem 'unirest'
 gem 'figaro'
 gem 'hirb'
+gem 'nokogiri'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'geocoder'
 
 
 gem 'better_errors'
