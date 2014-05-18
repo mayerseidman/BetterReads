@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+    require 'rubygems'
+    require 'nokogiri'
+    require 'open-uri'
   def new
     @user = User.all.find(params[:id])
   end
@@ -19,10 +21,34 @@ class UsersController < ApplicationController
   def index
     @user = User.first
     client = Goodreads::Client.new(oauth_token: "ALIVGfWdLZYkh34NIKzVmw", api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
-     # @reviews = client.book_by_title("Moby Dick")
+     @reviews = client.book_by_title("Moby Dick")
      @group_list = client.group_list(11807848 , 'sort')
       # @group = client.group(106427)
       # @members = @group.group_members
+
+    url = "https://www.goodreads.com/group/#{@group_list.group[0].id}/members?format=xml&key=#{client.api_key}"
+    doc = Nokogiri::HTML(open(url))
+    group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
+    @group = group.map do |id| 
+      begin
+        url = "https://www.goodreads.com/user/show/#{id}.xml?key=#{client.api_key}"
+        dic = Nokogiri::HTML(open(url))
+        dic.xpath("//location").text.titleize 
+        # dic.xpath("//name")[0].text
+      rescue
+      end
+    end
+    @name = group.map do |id|
+      begin
+        url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
+        dic = Nokogiri::HTML(open(url))
+        dic.xpath("//name")[0].text + ", location: " + dic.xpath("//location").text 
+      rescue
+      end
+    end
+
+    @location = @group.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
+
 
   end
 

@@ -17,6 +17,7 @@ gem 'omniauth-oauth'
 gem 'unirest'
 gem 'figaro'
 gem 'hirb'
+gem 'nokogiri'
 
 gem 'better_errors'
 gem 'binding_of_caller'
