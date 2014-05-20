@@ -57,7 +57,6 @@ class UsersController < ApplicationController
       rescue
       end
     end
-    @fun = Geocoder.coordinates @city[2]
 
     @location = @group.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
 
