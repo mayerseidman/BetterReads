@@ -22,6 +22,7 @@ gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'geocoder'
 
+gem "font-awesome-rails"
 
 gem 'better_errors'
 gem 'binding_of_caller'
