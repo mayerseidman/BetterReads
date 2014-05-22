@@ -1,7 +1,8 @@
 
-
+<div class="left-half">
 <h1>Listing users</h1>
-
+<h2>Group: <%= @title %></h2>
+<h2>Group Member Count: <%= @groupie.length %></h2>
 
 <% x = 0 %>
 <%= @current_user.uid %><br>
@@ -11,8 +12,9 @@
   <%= x %>:<%= member %><br>
   <%= @city[x-1] %><br>
 <% end %> 
-
+</div>
 <!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
+<div class="right-half">
 <script type="text/javascript">
     function initialize() {
       handler = Gmaps.build('Google');
@@ -72,7 +74,8 @@
 
     google.maps.event.addDomListener(window, "load", initialize);
   </script>
-<div id="map" style="width:580px;height:347px">
+<div id="map" style="width:800px;height:500px">
    <%= stylesheet_link_tag 'gmaps4rails_welcome' %>
    
+</div>
 </div>

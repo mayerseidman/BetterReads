@@ -16,7 +16,7 @@
     <%= yield %>
 
 
-<div id="user_nav">
+<div class="clear" id="user_nav">
   <% if current_user %>
     Signed in as <%= current_user.name %>
     <%= link_to "Sign out", signout_path %>
