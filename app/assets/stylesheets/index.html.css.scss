@@ -1,8 +1,15 @@
 
-
-
+.popup{
+   position:fixed;
+ left:50%;  
+}
+.popup .wrapper{
+  position:relative; 
+  left:-50%;
+  top: -50%;
+  margin-top: 200px;
+}  
 .push_button {
-    position: relative;
     width:310px;
     height:70px;
     text-align:center;
@@ -11,8 +18,13 @@
     text-decoration:none;
     line-height:43px;
     font-family:'Oswald', Helvetica;
-    display: block;
-    margin: 30px;
+    // display: block;
+    //  position: fixed;
+  //   top: 50%;
+  //   left: 50%;
+  // margin-top: -50px;
+  // margin-left: -100px;
+
 }
 .push_button:before {
     background:#f0f0f0;
