@@ -5,6 +5,6 @@
   <% @group_list.group.each do |g| %>
   
   <%#= @group_id = g.id %>                
-  <h2><%= @group_title = g.title %></h2>        
+  <h2><%= link_to g.title , group_path(g.id) %></h2>        
   
 <% end %>
