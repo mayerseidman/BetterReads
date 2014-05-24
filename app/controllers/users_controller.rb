@@ -45,14 +45,17 @@ class UsersController < ApplicationController
       begin
         url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
         dic = Nokogiri::HTML(open(url))
-        x = dic.xpath("//name")[0].text || "no name"
-        @name << x
         y = Geocoder.coordinates dic.xpath("//location").text
-        if y.nil? 
-          y = [0,0]
+        unless y.nil? || y === [37.09024, -95.712891]
+          @city << y
         end
-        @city << y
-        @id << id
+        x = dic.xpath("//name")[0].text 
+        unless y.nil? || y === [37.09024, -95.712891]
+          @name << x
+        end
+        unless y.nil? || y === [37.09024, -95.712891]
+          @id << id
+        end
       rescue
       end
     end
