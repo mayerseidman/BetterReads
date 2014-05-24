@@ -25,21 +25,22 @@ class UsersController < ApplicationController
       # @group = client.group(106427)
       # @members = @group.group_members
 
-    url = "https://www.goodreads.com/group/#{@group_list.group.id}/members?format=xml&key=#{client.api_key}"
+    url = "https://www.goodreads.com/group/#{@group_list.group[0].id}/members?format=xml&key=#{client.api_key}"
     doc = Nokogiri::HTML(open(url))
     group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
-    @group = group.map do |id| 
-      begin
-        url = "https://www.goodreads.com/user/show/#{id}.xml?key=#{client.api_key}"
-        dic = Nokogiri::HTML(open(url))
-        dic.xpath("//location").text.titleize 
-        # dic.xpath("//name")[0].text
-      rescue
-      end
-    end
+    @group = group
+    # group.map do |id| 
+    #   begin
+    #     url = "https://www.goodreads.com/user/show/#{id}.xml?key=#{client.api_key}"
+    #     dic = Nokogiri::HTML(open(url))
+    #     dic.xpath("//location").text.titleize 
+    #     # dic.xpath("//name")[0].text
+    #   rescue
+    #   end
+    # end
     @name = []
     @city = []
-    group.map do |id|
+    group.each do |id|
       begin
         url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
         dic = Nokogiri::HTML(open(url))

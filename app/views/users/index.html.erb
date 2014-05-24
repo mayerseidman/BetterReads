@@ -76,3 +76,11 @@
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
+<% x = "http://www.goodreads.com/message/new/#{@group[0]}" %>
+
+<%= link_to "Message User", x, target:"blank" %>
+
+<iframe src= <%= x %> style="height: 400px; width: 650px"></iframe>
+
+
+
