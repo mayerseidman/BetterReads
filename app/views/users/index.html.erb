@@ -2,7 +2,7 @@
 
 <h1>Listing users</h1>
 
-
+<% z = "http://www.goodreads.com/message/new/#{@group[0]}" %>
 <% x = 0 %>
 <%= @auth_data %><br>
 <%= @current_user.uid %><br>
@@ -20,54 +20,20 @@
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers([
           <% x = 0 %>
+     
           <% @name.each do |member| %>
+             <% y = "http://www.goodreads.com/message/new/#{@id[x]}" %>
             {
               "lat": "<%= @city[x][0] %>",
               "lng": "<%= @city[x][1] %>",
-              // "picture": {
-              //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-              //   "width":  36,
-              //   "height": 36
-              // },
-              "infowindow": "+ <%= member %> +"
+              "infowindow": "<%= member %> <a href='<%= y %>', target='blank'>Message User</a> "
             },
-            <% x < 16 ? x += 1 : x = 16 %>
+            <%  x += 1 %>
           <% end %>
-          // {
-          //   "lat": 0,
-          //   "lng": 42.85,
-          //   // "picture": {
-          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          //   //   "width":  36,
-          //   //   "height": 36
-          //   // },
-          //   "infowindow": "+ <%= @name[1] %> +"
-          // },
-          // {
-          //   "lat": -33.8695000,
-          //   "lng": 151.211000,
-          //   // "picture": {
-          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          //   //   "width":  36,
-          //   //   "height": 36
-          //   // },
-          //   "infowindow": "+ <%= @name[2] %> +"
-          // },
-          //   {
-          //   "lat": -33.8695000,
-          //   "lng": 151.211000,
-          //   // "picture": {
-          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          //   //   "width":  36,
-          //   //   "height": 36
-          //   // },
-          //   "infowindow": "+ <%= @name[3] %> +"
-          // }
-
         ]);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        zoom: 8;
+        handler.getMap().setZoom(15);
       });
     }
 
@@ -76,11 +42,11 @@
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
-<% x = "http://www.goodreads.com/message/new/#{@group[0]}" %>
 
-<%= link_to "Message User", x, target:"blank" %>
 
-<iframe src= <%= x %> style="height: 400px; width: 650px"></iframe>
+<%= link_to "Message User", z, target:"blank" %>
+
+<iframe src= <%= z %> style="height: 400px; width: 650px"></iframe>
 
 
 

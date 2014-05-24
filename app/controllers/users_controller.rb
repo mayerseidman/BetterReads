@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     # end
     @name = []
     @city = []
+    @id = []
     group.each do |id|
       begin
         url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
           y = [0,0]
         end
         @city << y
+        @id << id
       rescue
       end
     end
