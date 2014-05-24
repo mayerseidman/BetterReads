@@ -1,4 +1,4 @@
-class GroupController < ApplicationController
+class GroupsController < ApplicationController
   require 'rubygems'
   require 'nokogiri'
   require 'open-uri'
