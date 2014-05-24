@@ -1,13 +1,16 @@
 
 
 
-<h1><%= @current_user.name %> 's Groups </h1>
+<h1><%= @current_user.name %>'s Groups </h1>
 
 
   <% @group_list.group.each do |g| %>
   
-  <%#= @group_id = g.id %>                
-  <h2><%= link_to g.title , group_path(g.id) %></h2>        
+  <% @group_id = g.id %>                
+  <h2><%= link_to g.title , group_path(@group_id) %></h2>        
   
 <% end %>
+
+
+
 
