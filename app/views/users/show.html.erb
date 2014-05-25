@@ -1,4 +1,218 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+      <div id="bl-main" class="bl-main">
+        <section>
+          <div class="bl-box">
+            
+            <h2 class="bl-icon bl-icon-about">About</h2>
+          </div>
+          <div class="bl-content">
+            <h2>About this layout</h2>
+            <p>This responsive layout is based on an initial grid of four boxes. Once a box is clicked, it gets resized to fullscreen and the other boxes scale down and fade out. In the work section we experiment with another transition which is to show a panel by making it appear from the bottom while scaling the current one down. To see it in action, open the work section and click on one of the portfolio items and navigate through them.</p>
 
+          </div>
+          <span class="bl-icon bl-icon-close"></span>
+        </section>
+        <section id="bl-work-section">
+          <div class="bl-box">
+            <h2 class="bl-icon bl-icon-works">Works</h2>
+          </div>
+          <div class="bl-content">
+            <h2>My Works</h2>
+            <p>Mung bean maize dandelion sea lettuce catsear bunya nuts ricebean tatsoi caulie horseradish pea.</p>
+            <ul id="bl-work-items">
+              <li data-panel="panel-1"><a href="#"></a></li>
+              <li data-panel="panel-2"><a href="#"></a></li>
+              <li data-panel="panel-3"><a href="#"></a></li>
+              <li data-panel="panel-4"><a href="#"></a></li>
+            </ul>
+          </div>
+          <span class="bl-icon bl-icon-close"></span>
+        </section>
+        <section>
+          <div class="bl-box">
+            <h2 class="bl-icon bl-icon-blog">Blog</h2>
+          </div>
+          
+
+          <div class="bl-content">
+
+<div class="popup">
+  <div class="wrapper">
+       
  
+    <%= button_to 'Sign In To Your GoodReads Account', "/auth/Goodreads", class: "push_button red" , :method => :get %>
+   </div>
+</div>
+            <!--     <form class="form-1">
+                  <p class="field">
+                      <input type="text" name="login" placeholder="Email" id="email">
+                      <i class="fa fa-user fa-large"></i>
+                  </p>
+
+                  <p class="submit">
+                      <button type="submit" name="submit" id="sign-in"><i class="fa fa-arrow-right fa-large"></i></button>
+                  </p>
+              </form> -->
+
+
+
+        </div>
+          <span class="bl-icon bl-icon-close"></span>
+
+        </section>
+        <section>
+          <div class="bl-box">
+            <h2 class="bl-icon bl-icon-contact">Contact</h2>
+          </div>
+          <div class="bl-content">
+            <h2>Get in touch</h2>
+            <p>Pinterest semiotics single-origin coffee craft beer thundercats irony, tumblr bushwick intelligentsia pickled. Narwhal mustache godard master cleanse street art, occupy ugh selfies put a bird on it cray salvia four loko gluten-free shoreditch. Occupy american apparel freegan cliche. Mustache trust fund 8-bit jean shorts mumblecore thundercats. Pour-over small batch forage cray, banjo post-ironic flannel keffiyeh cred ethnic semiotics next level tousled fashion axe. Sustainable cardigan keytar fap bushwick bespoke.</p>
+          </div>
+          <span class="bl-icon bl-icon-close"></span>
+        </section>
+        <!-- Panel items for the works -->
+        <div class="bl-panel-items" id="bl-panel-work-items"></div>
+      </div>
+    </div><!-- /container -->
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src=""></script>
+    <script>
+      var Boxlayout = (function() {
+
+        var $el = $( '#bl-main' ),
+          $sections = $el.children( 'section' ),
+          // works section
+          $sectionWork = $( '#bl-work-section' ),
+          // work items
+          $workItems = $( '#bl-work-items > li' ),
+          // work panels
+          $workPanelsContainer = $( '#bl-panel-work-items' ),
+          $workPanels = $workPanelsContainer.children( 'div' ),
+          totalWorkPanels = $workPanels.length,
+          // navigating the work panels
+          $nextWorkItem = $workPanelsContainer.find( 'nav > span.bl-next-work' ),
+          // if currently navigating the work items
+          isAnimating = false,
+          // close work panel trigger
+          $closeWorkItem = $workPanelsContainer.find( 'nav > span.bl-icon-close' ),
+          transEndEventNames = {
+            'WebkitTransition' : 'webkitTransitionEnd',
+            'MozTransition' : 'transitionend',
+            'OTransition' : 'oTransitionEnd',
+            'msTransition' : 'MSTransitionEnd',
+            'transition' : 'transitionend'
+          },
+          // transition end event name
+          transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+          // support css transitions
+          supportTransitions = Modernizr.csstransitions;
+
+        function init() {
+          initEvents();
+        }
+
+        function initEvents() {
+
+          $sections.each( function() {
+
+            var $section = $( this );
+
+            // expand the clicked section and scale down the others
+            $section.on( 'click', function() {
+
+              if( !$section.data( 'open' ) ) {
+                $section.data( 'open', true ).addClass( 'bl-expand bl-expand-top' );
+                $el.addClass( 'bl-expand-item' );
+              }
+
+            } ).find( 'span.bl-icon-close' ).on( 'click', function() {
+
+              // close the expanded section and scale up the others
+              $section.data( 'open', false ).removeClass( 'bl-expand' ).on( transEndEventName, function( event ) {
+                if( !$( event.target ).is( 'section' ) ) return false;
+                $( this ).off( transEndEventName ).removeClass( 'bl-expand-top' );
+              } );
+
+              if( !supportTransitions ) {
+                $section.removeClass( 'bl-expand-top' );
+              }
+
+              $el.removeClass( 'bl-expand-item' );
+
+              return false;
+
+            } );
+
+          } );
+
+          // clicking on a work item: the current section scales down and the respective work panel slides up
+          $workItems.on( 'click', function( event ) {
+
+            // scale down main section
+            $sectionWork.addClass( 'bl-scale-down' );
+
+            // show panel for this work item
+            $workPanelsContainer.addClass( 'bl-panel-items-show' );
+
+            var $panel = $workPanelsContainer.find("[data-panel='" + $( this ).data( 'panel' ) + "']");
+            currentWorkPanel = $panel.index();
+            $panel.addClass( 'bl-show-work' );
+
+            return false;
+
+          } );
+
+          // navigating the work items: current work panel scales down and the next work panel slides up
+          $nextWorkItem.on( 'click', function( event ) {
+
+            if( isAnimating ) {
+              return false;
+            }
+            isAnimating = true;
+
+            var $currentPanel = $workPanels.eq( currentWorkPanel );
+            currentWorkPanel = currentWorkPanel < totalWorkPanels - 1 ? currentWorkPanel + 1 : 0;
+            var $nextPanel = $workPanels.eq( currentWorkPanel );
+
+            $currentPanel.removeClass( 'bl-show-work' ).addClass( 'bl-hide-current-work' ).on( transEndEventName, function( event ) {
+              if( !$( event.target ).is( 'div' ) ) return false;
+              $( this ).off( transEndEventName ).removeClass( 'bl-hide-current-work' );
+              isAnimating = false;
+            } );
+
+            if( !supportTransitions ) {
+              $currentPanel.removeClass( 'bl-hide-current-work' );
+              isAnimating = false;
+            }
+
+            $nextPanel.addClass( 'bl-show-work' );
+
+            return false;
+
+          } );
+
+          // clicking the work panels close button: the current work panel slides down and the section scales up again
+          $closeWorkItem.on( 'click', function( event ) {
+
+            // scale up main section
+            $sectionWork.removeClass( 'bl-scale-down' );
+            $workPanelsContainer.removeClass( 'bl-panel-items-show' );
+            $workPanels.eq( currentWorkPanel ).removeClass( 'bl-show-work' );
+
+            return false;
+
+          } );
+
+        }
+
+        return { init : init };
+
+      })();
+
+
+
+      $(function() {
+        Boxlayout.init();
+      });
+    </script>
