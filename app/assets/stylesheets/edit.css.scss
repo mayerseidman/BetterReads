@@ -11,6 +11,11 @@
   font-style: normal;
 }
 
+h1 {
+    color: black;
+
+}
+
 body, html { font-size: 100%; padding: 0; margin: 0; height: 100%;}
 
 *,
@@ -24,13 +29,13 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 100%;}
 body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #f2ede3;
-    background: #333;
-    font-size: 0.9em;
+    background: white;
+    font-size: 1.0em;
     font-weight: 300;
 }
 
 a {
-  color: #f0f0f0;
+  color: gray;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 2px;
@@ -40,7 +45,7 @@ a {
 }
 
 a:hover {
-  color: #fff;
+  color: black;
 }
 
 .container { height: 100%; }
@@ -67,19 +72,19 @@ a:hover {
 .bl-main > section:nth-child(2) {
   top: 0;
   left: 50%;
-  background: #FA987D;
+  background: #EE8239;
 }
 
 .bl-main > section:nth-child(3) {
   top: 50%;
   left: 0;
-  background: #72CCA7;
+  background: #0FA064;
 }
 
 .bl-main > section:nth-child(4) {
   top: 50%;
   left: 50%;
-  background: #10A296;
+  background: #4F75F0;
 }
 
 .bl-box {
