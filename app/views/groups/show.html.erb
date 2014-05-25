@@ -1,0 +1,44 @@
+<h1>Listing users</h1>
+
+
+<% x = 0 %>
+<%= @auth_data %><br>
+<%= @current_user.uid %><br>
+<%= @fun %><br>
+<% @name.each do |member| %>
+  <% x += 1 %>
+  <%= x %>:<%= member %><br>
+  <%= @city[x-1] %><br>
+<% end %> 
+
+<!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
+<script type="text/javascript">
+    function initialize() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          <% x = 0 %>
+     
+          <% @name.each do |member| %>
+             <% y = "http://www.goodreads.com/message/new/#{@id[x]}" %>
+            {
+              "lat": "<%= @city[x][0] %>",
+              "lng": "<%= @city[x][1] %>",
+              "infowindow": "<%= member %> <a href='<%= y %>', target='blank'>Message User</a> "
+            },
+            <%  x += 1 %>
+          <% end %>
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(2);
+      });
+    }
+
+    google.maps.event.addDomListener(window, "load", initialize);
+  </script>
+<div style='width: 900px;'>
+  <div id="map" style='width: 900px; height: 400px;'></div>
+</div>
+
+

@@ -1,6 +1,8 @@
 Omniauthpls::Application.routes.draw do
 
  
+  get "groups/index"
+  get "groups/show"
   resources :users
  
   get '/auth/:goodreads/callback', :to => 'sessions#create'
