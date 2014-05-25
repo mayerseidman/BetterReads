@@ -39,6 +39,8 @@ class GroupsController < ApplicationController
       begin
         url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
         dic = Nokogiri::HTML(open(url))
+        @place = dic.xpath("//location").text
+        
         y = Geocoder.coordinates dic.xpath("//location").text
         unless y.nil? || y === [37.09024, -95.712891]
           @city << y

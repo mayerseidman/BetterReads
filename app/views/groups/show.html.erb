@@ -1,6 +1,6 @@
 <h1>Listing users</h1>
 
-
+<p>
 <% x = 0 %>
 <%= @auth_data %><br>
 <%= @current_user.uid %><br>
@@ -9,7 +9,8 @@
   <% x += 1 %>
   <%= x %>:<%= member %><br>
   <%= @city[x-1] %><br>
-<% end %> 
+  <%= @place %>
+<% end %> </p>
 
 <!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
 <script type="text/javascript">
@@ -24,7 +25,7 @@
             {
               "lat": "<%= @city[x][0] %>",
               "lng": "<%= @city[x][1] %>",
-              "infowindow": "<%= member %> <a href='<%= y %>', target='blank'>Message User</a> "
+              "infowindow": "<p class = members><%= member %> -  <%= @place %> </p> <a href='<%= y %>', target='blank'>Message User</a> "
             },
             <%  x += 1 %>
           <% end %>
