@@ -1,8 +1,4 @@
 Omniauthpls::Application.routes.draw do
-<<<<<<< HEAD
-=======
-
->>>>>>> 5f1c226cff2d311921614de9f65965067e080779
  
   resources :users
  
