@@ -2,7 +2,7 @@
 
 <h1>Listing users</h1>
 
-
+<% z = "http://www.goodreads.com/message/new/#{@group[0]}" %>
 <% x = 0 %>
 <%= @current_user.uid %><br>
 <%= @fun %><br>
@@ -20,60 +20,40 @@
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers([
           <% x = 0 %>
+     
           <% @name.each do |member| %>
+             <% y = "http://www.goodreads.com/message/new/#{@id[x]}" %>
             {
               "lat": "<%= @city[x][0] %>",
               "lng": "<%= @city[x][1] %>",
-              // "picture": {
-              //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-              //   "width":  36,
-              //   "height": 36
-              // },
-              "infowindow": "+ <%= member %> +"
+              "infowindow": "<%= member %> <a href='<%= y %>', target='blank'>Message User</a> "
             },
+<<<<<<< HEAD
             <% x += 1 %>
+=======
+            <%  x += 1 %>
+>>>>>>> 5f1c226cff2d311921614de9f65965067e080779
           <% end %>
-          // {
-          //   "lat": 0,
-          //   "lng": 42.85,
-          //   // "picture": {
-          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          //   //   "width":  36,
-          //   //   "height": 36
-          //   // },
-          //   "infowindow": "+ <%= @name[1] %> +"
-          // },
-          // {
-          //   "lat": -33.8695000,
-          //   "lng": 151.211000,
-          //   // "picture": {
-          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          //   //   "width":  36,
-          //   //   "height": 36
-          //   // },
-          //   "infowindow": "+ <%= @name[2] %> +"
-          // },
-          //   {
-          //   "lat": -33.8695000,
-          //   "lng": 151.211000,
-          //   // "picture": {
-          //   //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          //   //   "width":  36,
-          //   //   "height": 36
-          //   // },
-          //   "infowindow": "+ <%= @name[3] %> +"
-          // }
-
         ]);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        zoom: 8;
+        handler.getMap().setZoom(2);
       });
     }
 
     google.maps.event.addDomListener(window, "load", initialize);
   </script>
+<<<<<<< HEAD
 <div id="map" style="width:580px; height:347px">
    <%= stylesheet_link_tag 'gmaps4rails_welcome' %>
    
 </div>
+=======
+<div style='width: 900px;'>
+  <div id="map" style='width: 900px; height: 400px;'></div>
+</div>
+
+
+
+
+>>>>>>> 5f1c226cff2d311921614de9f65965067e080779
