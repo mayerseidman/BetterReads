@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
       # @group = client.group(106427)
       # @members = @group.group_members
 
-    url = "https://www.goodreads.com/group/#{@group_list.group[0].id}/members?format=xml&key=#{client.api_key}"
+    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key=#{client.api_key}"
     doc = Nokogiri::HTML(open(url))
     group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
     @group = group
