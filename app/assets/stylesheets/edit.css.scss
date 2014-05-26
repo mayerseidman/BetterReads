@@ -151,6 +151,10 @@ a:hover {
   -webkit-font-smoothing: antialiased;
 }
 
+.bl-icon img {
+  height: 80px;
+}
+
 .bl-icon:before {
   display: block;
   font-size: 2em;
