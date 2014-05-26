@@ -1,6 +1,5 @@
-<h1>Listing users</h1>
 
-<p>
+<!-- <p>
 <% x = 0 %>
 <%= @auth_data %><br>
 <%= @current_user.uid %><br>
@@ -10,7 +9,7 @@
   <%= x %>:<%= member %><br>
   <%= @city[x-1] %><br>
   <%= @place %>
-<% end %> </p>
+<% end %> </p> -->
 
 <!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
 <script type="text/javascript">
@@ -25,7 +24,7 @@
             {
               "lat": "<%= @city[x][0] %>",
               "lng": "<%= @city[x][1] %>",
-              "infowindow": "<p class = members><%= member %> -  <%= @place %> </p> <a href='<%= y %>', target='blank'>Message User</a> "
+              "infowindow": "<p class = members><%= member %> -  <%= @place[x] %> </p> <a href='<%= y %>', target='blank'>Message User</a> "
             },
             <%  x += 1 %>
           <% end %>
@@ -33,13 +32,15 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         handler.getMap().setZoom(2);
+        handler.map.centerOn([25.0000, 13.0000]);
+
       });
     }
 
     google.maps.event.addDomListener(window, "load", initialize);
   </script>
-<div style='width: 900px;'>
-  <div id="map" style='width: 900px; height: 400px;'></div>
+<div style='width: 1000px;'>
+  <div id="map" style='width: 1030px; height: 500px;'></div>
 </div>
 
 
