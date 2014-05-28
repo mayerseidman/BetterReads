@@ -1,3 +1,4 @@
+
 <div id="user-nav">
   <% if current_user %>
     Signed in as <%= current_user.name %>
@@ -6,8 +7,9 @@
     <%= link_to "Sign in with Goodreads", "/auth/Goodreads" %>
   <% end %>
 </div>
+ <body class = "index"> </body> 
 
-<h1><%= @current_user.name %>'s Groups </h1>
+<div class = "grouplist"><h1><%= @current_user.name %>'s Groups </h1>
 
 
   <% @group_list.group.each do |g| %>
@@ -15,5 +17,5 @@
   <h2><%= link_to g.title , group_path(@group_id), 'data-no-turbolink' => true %></h2>        
   
 <% end %>
-
+</div>
 
