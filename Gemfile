@@ -26,7 +26,7 @@ gem 'geocoder'
 
 gem 'better_errors'
 gem 'binding_of_caller'
-
+gem 'rails_12factor', group: :production
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
