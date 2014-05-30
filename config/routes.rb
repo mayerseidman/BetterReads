@@ -3,7 +3,7 @@ Omniauthpls::Application.routes.draw do
  
   resources :users
  
-    get 'https://betterreads.herokuapp.com/auth/:goodreads/callback', :to => 'sessions#create'
+    get 'https://betterreads.herokuapp.com/auth/:goodreads', :to => 'sessions#create'
   
   root :to => "users#show"
   get 'signout', to: 'sessions#destroy', as: 'signout'
