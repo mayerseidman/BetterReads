@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   require 'open-uri'
 
   def index
-    client = Goodreads::Client.new(oauth_token: "ALIVGfWdLZYkh34NIKzVmw", api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+    client = Goodreads::Client.new(oauth_token: user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
     @group_list = client.group_list(current_user.uid, 'sort')
     @group_list.group.each do |g| 
   
@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    client = Goodreads::Client.new(oauth_token: "ALIVGfWdLZYkh34NIKzVmw", api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+    client = Goodreads::Client.new(oauth_token: user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
      @reviews = client.book_by_title("Moby Dick")
      @group_list = client.group_list(current_user.uid, 'sort')
       # @group = client.group(106427)
