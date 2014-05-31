@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
 
   def index
     @user = user.find(params[:oauth_token])
-    client = Goodreads::Client.new(oauth_token: current_user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
-    @group_list = client.group_list(@user.uid, 'sort')
+    client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+    @group_list = client.group_list(curruser.uid, 'sort')
     @group_list.group.each do |g| 
   
     @group_id = g.id 
@@ -14,9 +14,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+    client = Goodreads::Client.new(oauth_token: @user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
      @reviews = client.book_by_title("Moby Dick")
-     @group_list = client.group_list(@user.uid, 'sort')
+     @group_list = client.group_list(current_user.uid, 'sort')
       # @group = client.group(106427)
       # @members = @group.group_members
 
