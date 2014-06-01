@@ -14,13 +14,13 @@ class GroupsController < ApplicationController
   end
 
   def show
-    client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: current_user.oauth_secret)
-     @reviews = client.book_by_title("Moby Dick")
-     @group_list = client.group_list(current_user.uid, 'sort')
-      # @group = client.group(106427)
+    # client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: current_user.oauth_secret)
+    #  @reviews = client.book_by_title("Moby Dick")
+    #  @group_list = client.group_list(current_user.uid, 'sort')
+    #   # @group = client.group(106427)
       # @members = @group.group_members
 
-    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key=#{client.api_key}"
+    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key=UpIly3BURwhZ52tmj4ag"
     doc = Nokogiri::HTML(open(url))
     group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
     @group = group
