@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: current_user.oauth_secret))
+    client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: current_user.oauth_secret)
      @reviews = client.book_by_title("Moby Dick")
      @group_list = client.group_list(current_user.uid, 'sort')
       # @group = client.group(106427)
