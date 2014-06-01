@@ -3,8 +3,8 @@ class GroupsController < ApplicationController
   require 'nokogiri'
   require 'open-uri'
 
-  # def index
-  #   @user = user.find(params[:oauth_token])
+  def index
+    @user = user.find(params[:oauth_token])
     client = Goodreads::Client.new(oauth_token: current_user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
     @group_list = client.group_list(current_user.uid, 'sort')
     @group_list.group.each do |g| 
