@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   require 'open-uri'
 
   def index
-     @user = user.find(current_user.id)
+     @user = User.find(current_user.id)
     client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
     @group_list = client.group_list(@user.id, 'sort')
     @group_list.group.each do |g| 
