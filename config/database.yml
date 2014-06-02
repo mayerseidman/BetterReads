@@ -7,15 +7,21 @@ development:
   adapter: sqlite3
   database: db/development.sqlite3
   pool: 5
-  timeout: 5000
+  timeout: 25000
+  host: localhost
+ 
+
 test:
   adapter: postgresql
   database: my_database_test
   pool: 5
-  timeout: 5000
+  timeout: 25000
+  host: localhost
 
 production:
   adapter: postgresql
   database: my_database_production
   pool: 5
-  timeout: 5000
+  timeout: 100000
+
+

@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
 
   def index
     @user = User.find(current_user.id)
-    client = Goodreads::Client.new(oauth_token: current_user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: current_user.oauth_secret)
-    @group_list = client.group_list(current_user.id, 'sort')
+    client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+    @group_list = client.group_list(@user.id, 'sort')
     @group_list.group.each do |g| 
   
     @group_id = g.id 
@@ -14,7 +14,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key=#{'UpIly3BURwhZ52tmj4ag'}"
+   
+    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'"
     doc = Nokogiri::HTML(open(url))
     group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
     @group = group

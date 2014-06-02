@@ -9,6 +9,7 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+gem 'unicorn'
 gem 'omniauth-goodreads', require: 'omniauth-goodreads'
 gem 'goodreads'
 gem 'multi_xml'
@@ -26,7 +27,7 @@ gem 'geocoder'
 
 gem 'better_errors'
 gem 'binding_of_caller'
-
+gem 'rails_12factor', group: :production
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
