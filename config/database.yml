@@ -5,17 +5,24 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
+  host: localhost
   database: my_database_development
   pool: 5
   timeout: 25000
+  username: mayerseidman
+ 
+
 test:
   adapter: postgresql
   database: my_database_test
   pool: 5
   timeout: 25000
+  host: localhost
 
 production:
   adapter: postgresql
   database: my_database_production
   pool: 5
   timeout: 100000
+
+
