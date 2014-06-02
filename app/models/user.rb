@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     def self.create_with_omniauth(auth)
       user = where(auth.slice("provider", "uid")).first_or_create do |user|
         user.provider = auth["provider"]
-        user.uid = auth["uid"]
+        user.id = auth["uid"]
         user.name = auth["info"]["name"]
         user.username = auth["info"]["username"]
         user.oauth_token = auth["credentials"]["token"]
