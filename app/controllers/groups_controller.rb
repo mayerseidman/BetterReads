@@ -4,8 +4,8 @@ class GroupsController < ApplicationController
   require 'open-uri'
 
   def index
-   user = User.find(current_user.id)
-    client = Goodreads::Client.new(oauth_token: user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: user.oauth_secret)
+    # @user = user.find(params[:oauth_token])
+    client = Goodreads::Client.new(oauth_token: current_user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
     @group_list = client.group_list(current_user.uid, 'sort')
     @group_list.group.each do |g| 
   
@@ -14,13 +14,13 @@ class GroupsController < ApplicationController
   end
 
   def show
-    client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: current_user.oauth_secret)
-     @reviews = client.book_by_title("Moby Dick")
-     @group_list = client.group_list(current_user.uid, 'sort')
+    # client = Goodreads::Client.new(oauth_token: current_user.oath_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+    #  @reviews = client.book_by_title("Moby Dick")
+    #  @group_list = client.group_list(current_user.uid, 'sort')
       # @group = client.group(106427)
       # @members = @group.group_members
 
-    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key=#{client.api_key}"
+    url = "https://www.goodreads.com/group/#{params[:id]}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'"
     doc = Nokogiri::HTML(open(url))
     group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
     @group = group
