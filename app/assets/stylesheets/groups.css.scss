@@ -14,13 +14,19 @@ border:14px solid #021a40;
 
 .comingsoon {
 
+  text-align: center;
+}
+
+.bio1 {
+
   text-align: left;
 }
 
-.comingsoon img {
+.bio1 img {
 
   width: 300px;
-  border:7px solid #021a40;
+  border:7px solid; 
+  color:white;
   margin-top: -10px;
 }
 
