@@ -68,19 +68,25 @@
 
            <p class = "bio1"> <%= image_tag "profilepic.jpg" %>  </p><p class = "bio"> I am Mayer Seidman, a RoR/JS developer who loves technology and solving challenging problems. If you would like to chat about a job opportunity or just in general, you can reach me here:  </p>
 
-            <div class = "twitter"><%= image_tag "twitter.png" %> </div> <div class = "Linkedin"> <%= image_tag "Linkedin.png" %> </div>
-            <div class="gmail"> <%= image_tag "gmail.png" %> </div>
+            <div class = "twitter"><%= link_to image_tag("twitter.png"), "https://twitter.com/mayerseidman", :target => "_blank" %>   
+            </div> <div class = "Linkedin"> <%= link_to image_tag("Linkedin.png"), "https://www.linkedin.com/pub/mayer-seidman/37/502/91a", :target => "_blank" %> </div>
+            
+            <div class="gmail"> <%= link_to (image_tag "gmail.png"), "https://mzseidman@gmail.com", :target => "_blank" %> </div>
 
           <p class = "applist"> Other apps I have worked on </p>
 
-         <div class = "Sit4u">  Sit4u  &nbsp;-  &nbsp; </div> <p class="sit4u1"> <%= link_to image_tag("Sit4u.png"), "https://sit4u.co" %>    </p> <p class = "github"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/Sit4U" %>
+         <div class = "Sit4u">  Sit4u  &nbsp;-  &nbsp; </div> <p class="sit4u1"> <%= link_to image_tag("Sit4u.png"), "https://sit4u.co", :target => "_blank" %>    
 
-          <div class = "beautyengine">  Beauty engine  &nbsp;-  &nbsp;</div> <p class="beautyengine1"><%= link_to image_tag("beautyengine.png"), "https://beautyengine.herokuapp.com" %> 
-        </p><p class = "github2"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/Miss-Watson" %></p>
+       </p> <p class = "github"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/Sit4U", :target => "_blank" %>
+
+          <div class = "beautyengine">  Beauty engine  &nbsp;-  &nbsp;</div> <p class="beautyengine1"><%= link_to image_tag("beautyengine.png"), "https://beautyengine.herokuapp.com", :target => "_blank" %> 
+
+        </p><p class = "github2"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/Miss-Watson", :target => "_blank" %></p>
        </p> 
          
-          <div class = "weatherpane">Weatherpane &nbsp;-  &nbsp;</div> <p class="weatherpane1"><%= link_to image_tag("weather.png"), "https://weatherpane.herokuapp.com" %> 
-        </p><p class = "github3"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/WeatherPane_v2" %></p>
+          <div class = "weatherpane">Weatherpane &nbsp;-  &nbsp;</div> <p class="weatherpane1"><%= link_to image_tag("weather.png"), "https://weatherpane.herokuapp.com", :target => "_blank" %> 
+        
+        </p><p class = "github3"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/WeatherPane_v2", :target => "_blank" %></p>
      
 
           <span class="bl-icon-close"><p class="close"><%= image_tag "close.png" %></p></span>
