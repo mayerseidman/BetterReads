@@ -71,7 +71,7 @@
             <div class = "twitter"><%= link_to image_tag("twitter.png"), "https://twitter.com/mayerseidman", :target => "_blank" %>   
             </div> <div class = "Linkedin"> <%= link_to image_tag("Linkedin.png"), "https://www.linkedin.com/pub/mayer-seidman/37/502/91a", :target => "_blank" %> </div>
             
-            <div class="gmail"> <%= link_to (image_tag "gmail.png"), "https://mzseidman@gmail.com", :target => "_blank" %> </div>
+            <div class="gmail"> <%= mail_to "mzseidman@gmail.com", (image_tag "gmail.png") %> </div>
 
           <p class = "applist"> Other apps I have worked on </p>
 
