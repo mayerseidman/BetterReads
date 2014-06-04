@@ -18,7 +18,15 @@
       <h2><%= link_to g.title , group_path(@group_id), 'data-no-turbolink' => true %></h2>        
     <% end %>
   <% else %>
-      <h3><a href= "https://www.goodreads.com/group", target='blank'>Join some reading groups!</a> </h3>
+    
+  <div class="popup">
+  <div class="wrapper1">
+
+ <h2>To see what the app can do, you must belong to some groups </h2><br>
+    <%= button_to 'Join some reading groups', "https://www.goodreads.com/group", class: "push_button blue" , :method => :get , form: {target: '_blank'} %>
+   </div>
+</div>
+
   <% end %>
 </div>
 
