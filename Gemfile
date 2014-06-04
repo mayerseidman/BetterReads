@@ -20,6 +20,7 @@ gem 'pg'
 gem 'unirest'
 gem 'figaro'
 gem 'hirb'
+
 gem 'nokogiri'
 gem 'gmaps4rails'
 gem 'underscore-rails'
