@@ -15,6 +15,8 @@ gem 'goodreads'
 gem 'multi_xml'
 gem 'omniauth-oauth'
 
+gem 'delayed_job_active_record'
+gem 'daemons'
 gem 'pg'
 
 gem 'unirest'
