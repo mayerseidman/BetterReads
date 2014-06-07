@@ -53,13 +53,13 @@ margin-left: 780px;
 .sit4u1 img {
 
   width: 70px;
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 .Sit4u {
 
   font-size: 25px;
-  font-family: sans-serif;
+  font-family: serif;
   color:white;
 
 }
@@ -68,34 +68,80 @@ margin-left: 780px;
 .beautyengine {
 
  font-size: 25px;
-  font-family: sans-serif;
+  font-family: serif;
   color:white;
   text-align: center;
   margin-top: -75px;
-  margin-right: 350px;
+  margin-right: 230px;
 
 }
 
 
 .beautyengine1 {
   margin-top: 0px;
+  margin-left: -75px;
 
 }
 
 .beautyengine1 img {
 
 width: 60px;
-margin-left: 570px;
-margin-top: -80px;
+margin-left: 630px;
+margin-top: -40px;
 height: 60px;
 }
+
+
+.weatherpane {
+
+ font-size: 25px;
+  font-family: serif;
+  color:white;
+  text-align: center;
+  margin-top: -75px;
+  margin-right: -535px;
+
+}
+
+
+.weatherpane1 {
+  margin-top: 0px;
+  margin-left: -80px;
+
+}
+
+.weatherpane1 img {
+
+width: 60px;
+margin-left: 1010px;
+margin-top: -40px;
+height: 60px;
+}
+
+
+.github3 {
+
+  text-align: center;
+  margin-top: -80px;
+  margin-left: 980px;
+}
+
+.github3 img {
+
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-left: -80px;
+}
+
+
 
 
 .github {
 
   text-align: center;
   margin-top: -70px;
-  margin-left: -865px;
+  margin-left: -955px;
 }
 
 .github img {
@@ -103,7 +149,7 @@ height: 60px;
   width: 70px;
   height: 70px;
   border-radius: 35px;
-  margin-left: -20px;
+  margin-left: 170px;
 }
 
 
@@ -111,7 +157,7 @@ height: 60px;
 
   text-align: center;
   margin-top: -80px;
-  margin-left: 80px;
+  margin-left: 90px;
 }
 
 .github2 img {
@@ -119,7 +165,8 @@ height: 60px;
   width: 70px;
   height: 70px;
   border-radius: 35px;
-  margin-left: -20px;
+  margin-left: 65px;
+  margin-top: -1px;
 }
 
 
@@ -134,17 +181,17 @@ h1 {
 .bio {
   font-family: serif;
   color: white;
-  font-size: 35px;
+  font-size: 30px;
   margin-left: 350px;
-  margin-top: -290px;
+  margin-top: -250px;
 }
 
 .applist {
 
-  margin-top: 60px;
+  margin-top: 20px;
   font-family: serif;
   color:white;
-  font-size: 35px;
+  font-size: 30px;
   text-align: left;
 }
 
@@ -319,9 +366,20 @@ a:hover {
   pointer-events: none;
 }
 
-.bl-icon-close:before {
-  content: "\e005";
+.bl-main > section .bl-icon-x {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
 }
+
+
+// .bl-icon-close:before {
+//   content: "\e005";
+// }
 
 .bl-content, 
 div.bl-panel-items > div > div {
@@ -586,6 +644,23 @@ section.bl-expand .bl-icon-close {
   -moz-transition: opacity 0.3s linear 0.5s;
   transition: opacity 0.3s linear 0.5s;
 }
+
+.bl-content,
+.bl-icon-x {
+  -webkit-transition: opacity 0.1s linear 0s;
+  -moz-transition: opacity 0.1s linear 0s;
+  transition: opacity 0.1s linear 0s;
+}
+
+section.bl-expand .bl-content,
+section.bl-expand .bl-icon-x {
+  pointer-events: auto;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s linear 0.5s;
+  -moz-transition: opacity 0.3s linear 0.5s;
+  transition: opacity 0.3s linear 0.5s;
+}
+
 
 @media screen and (max-width: 46.5em) {
   .bl-content,

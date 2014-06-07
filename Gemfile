@@ -15,11 +15,13 @@ gem 'goodreads'
 gem 'multi_xml'
 gem 'omniauth-oauth'
 
-# gem 'pg'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 gem 'unirest'
 gem 'figaro'
 gem 'hirb'
+
 gem 'nokogiri'
 gem 'gmaps4rails'
 gem 'underscore-rails'
