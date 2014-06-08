@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
                     
                     city = Geocoder.coordinates dic.xpath("//location").text
                     if city.nil? 
-                        city === [0, 0]
+                        city === "[0, 0]"
                     end
                     # end
                     name = dic.xpath("//name")[0].text 
