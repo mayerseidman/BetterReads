@@ -23,7 +23,7 @@
             
               "lat": "<%= eval(member.location)[0] %>",
               "lng": "<%= eval(member.location)[1] %>",
-              "infowindow": "<p class = members><%= member %> - </p> <a href='<%= y %>', target='blank'>Message User</a> "
+              "infowindow": "<p class = members><%= member.name %> - </p> <a href='<%= y %>', target='blank'>Message User</a> "
             },
             <% end %>
           <% end %>

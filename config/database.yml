@@ -4,12 +4,11 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-  adapter: postgresql
-  host: localhost
-  database: my_database_development
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 25000
-  username: mayerseidman
+  host: localhost
  
 
 test:
