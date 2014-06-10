@@ -11,11 +11,18 @@
 
 <div class = "grouplist"><h1><%= @user.name %>'s Groups </h1></div>
 
+<% if @user.groups.count <= @group_list.count %>
+  <h2 style="text-align:center;">We are busy gathering all your data from goodreads, please refresh periodically until this message dissapears</h2>
+<% end %>
 <div class = "groupl">
-  <% if !@group_list.group.nil? %>
+  <% if @group_list.group.present? %>
     <% @group_list.group.each do |g| %>
-      <% @group_id = g.id %>                
-      <h2><%= link_to g.title , group_path(@group_id), 'data-no-turbolink' => true %></h2>        
+      <% @group_id = g.id %>  
+      <% if @groups != nil && @groups.collect {|h| (h.title)}.include?(g.title) %>              
+        <h2><%= link_to g.title, group_path(@group_id), 'data-no-turbolink' => true %></h2>   
+      <% else %>
+        <h2><%= link_to g.title, group_path(@group_id), 'data-no-turbolink' => true %> may not be ready</h2> 
+      <% end %>     
     <% end %>
   <% else %>
     
