@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140607233218) do
     t.string   "oauth_token"
     t.string   "oauth_secret"
     t.string   "uid"
+    t.string   "email"
     t.string   "location"
     t.string   "auth"
   end

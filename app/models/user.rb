@@ -37,13 +37,6 @@ class User < ActiveRecord::Base
                   begin
                     url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
                     dic = Nokogiri::HTML(open(url))
-
-                    place = dic.xpath("//location").text
-                    
-                    city = Geocoder.coordinates dic.xpath("//location").text
-                    if city.nil? 
-                        city === "[0, 0]"
-
                     @name = dic.xpath("//name")[0].text 
                     @city = Geocoder.coordinates dic.xpath("//location").text
                     @city = @city.to_s
@@ -54,7 +47,6 @@ class User < ActiveRecord::Base
                             user.groups << @group_record
                         end
                         user.save!
-
                     end
                   rescue
                   end
@@ -63,4 +55,3 @@ class User < ActiveRecord::Base
         end 
     end
 end  
-
