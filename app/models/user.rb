@@ -21,9 +21,9 @@ class User < ActiveRecord::Base
     end
 
     def alert
-        user = User.last
-        client = Goodreads::Client.new(oauth_token: user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
-        @group_list = client.group_list(user.id, 'sort')
+        @user = User.last
+        client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+        @group_list = client.group_list(@user.id, 'sort')
 
         unless @group_list.group.nil?
             @group_list.group.each do |g| 
@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
                     end
                   rescue
                   end
+                end
+                unless @user.groups.include?(@group_record)
+                    @user.groups << @group_record
+                    @user.save!
                 end
             end
         end 
