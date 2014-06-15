@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     user = User.find_by_id(auth["uid"]) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
+    user.delay.alert 
     redirect_to listgroups_path, notice: "You have successfully logged in."
   end
 
