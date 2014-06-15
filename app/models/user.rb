@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
         unless @group_list.group.nil?
             @group_list.group.each do |g|
-                x = g.users_count.to_i/15 
+                x = g.users_count.to_i/10 
                 1.upto(x) do |n|
                     url = "https://www.goodreads.com/group/#{g.id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'&page=#{n}"
                     doc = Nokogiri::HTML(open(url))
