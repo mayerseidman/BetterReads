@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   
     @groups = @user.groups
     current_user.delay.alert 
-
+  end
 
 
 
