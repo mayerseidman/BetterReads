@@ -26,30 +26,41 @@ class User < ActiveRecord::Base
         @group_list = client.group_list(@user.id, 'sort')
 
         unless @group_list.group.nil?
-            @group_list.group.each do |g| 
-                url = "https://www.goodreads.com/group/#{g.id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'"
-                doc = Nokogiri::HTML(open(url))
-                group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
-              
-                @group_record = Group.where(id: g.id).first_or_create(title: g.title)
+            @group_list.group.each do |g|
+                x = g.users_count.to_i/15 
+                1.upto(x) do |n|
+                    url = "https://www.goodreads.com/group/#{g.id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'&page=#{n}"
+                    doc = Nokogiri::HTML(open(url))
+                    group = doc.xpath("//id").map{ |tr| tr.xpath("//id").map(&:text) }[0]
+                  
+                    @group_record = Group.where(id: g.id).first_or_create(title: g.title)
 
-                group.each do |id|
-                  begin
-                    url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
-                    dic = Nokogiri::HTML(open(url))
-                    @name = dic.xpath("//name")[0].text 
-                    @city = Geocoder.coordinates dic.xpath("//location").text
-                    @city = @city.to_s
-                    if @city.present? && @city != "[37.09024, -95.712891]"
-                        user = User.where(id: id).first_or_create(location: @city, name: @name)
-                        
-                        unless user.groups.include?(@group_record)
-                            user.groups << @group_record
+                    group.each do |id|
+                      begin
+                        url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
+                        dic = Nokogiri::HTML(open(url))
+                        @name = dic.xpath("//name")[0].text 
+                        @city = Geocoder.coordinates dic.xpath("//location").text
+                        @city = @city.to_s
+                        if @city.present? && @city != "[37.09024, -95.712891]"
+                            def check_location
+                                if @group_record.users.collect {|u| u.location}.include?(@city)
+                                    @city = @city.sub(@city[5], @city[5].next)
+                                    check_location
+                                end
+                            end
+                            check_location
+
+                            user = User.where(id: id).first_or_create(location: @city, name: @name)
+                            
+                            unless user.groups.include?(@group_record)
+                                user.groups << @group_record
+                            end
+                            user.save!
                         end
-                        user.save!
+                      rescue
+                      end
                     end
-                  rescue
-                  end
                 end
                 unless @user.groups.include?(@group_record)
                     @user.groups << @group_record
