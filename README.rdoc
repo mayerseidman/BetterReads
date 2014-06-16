@@ -1,28 +1,18 @@
-== README
+This app is called BetterReads. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+BetterReads enables readers to connect so that they can discuss and experience a book together. 
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+What do I need to get started with this app?
+
+A Goodreads.com account.
+
+
+How does BetterReads work?
+
+BetterReads will access the groups you belong to on Goodreads.com (after you authorize and sign in). By clicking on a group, you will then see the members of the group plotted on a Google Map.
+
+Okay but then what?
+
+You can search the map and click on members. After clicking on a member, you will see their name and a link to message them-so y'all can meet up and chat!
+
