@@ -15,4 +15,3 @@ BetterReads will access the groups you belong to on Goodreads.com (after you aut
 Okay but then what?
 
 You can search the map and click on members. After clicking on a member, you will see their name and a link to message them-so y'all can meet up and chat!
-
