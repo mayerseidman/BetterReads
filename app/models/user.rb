@@ -8,15 +8,15 @@ class User < ActiveRecord::Base
     has_and_belongs_to_many :groups
 
     def self.create_with_omniauth(auth)
-      user = where(auth.slice("provider", "uid")).first_or_create do |user|
-        user.provider = auth["provider"]
-        user.id = auth["uid"]
-        user.name = auth["info"]["name"]
-        user.username = auth["info"]["username"]
-        user.oauth_token = auth["credentials"]["token"]
-        user.oauth_secret = auth["credentials"]["secret"]
-        user.location = (Geocoder.coordinates auth["info"]["location"]).to_s
-        user.save!
+        user = where(auth.slice("provider", "uid")).first_or_create do |user|
+            user.provider = auth["provider"]
+            user.id = auth["uid"]
+            user.name = auth["info"]["name"]
+            user.username = auth["info"]["username"]
+            user.oauth_token = auth["credentials"]["token"]
+            user.oauth_secret = auth["credentials"]["secret"]
+            user.location = (Geocoder.coordinates auth["info"]["location"]).to_s
+            user.save!
         end  
     end
 
@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
         client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
         @group_list = client.group_list(@user.id, 'sort')
 
-        unless @group_list.group.nil?
+
+        unless @group_list.group.nil? 
             @group_list.group.each do |g|
                 x = g.users_count.to_i/10 
                 1.upto(x) do |n|
@@ -64,6 +65,7 @@ class User < ActiveRecord::Base
                           end
                         end
                     end    
+                
                 end
                 unless @user.groups.include?(@group_record)
                     @user.groups << @group_record

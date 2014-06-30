@@ -38,6 +38,9 @@
 
     google.maps.event.addDomListener(window, "load", initialize);
   </script>
+<div><%= @group.title.gsub("amp;", "") %></div>
+<div><%= @percent_loaded %></div>  
+<div><%= @group.users.count %> members</div>  
 <div style='width: 1000px;'>
   <div id="map" style='width: 1030px; height: 500px;'></div>
 </div>
