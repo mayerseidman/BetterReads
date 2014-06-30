@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
                   
                     @group_record = Group.where(id: g.id).first_or_create(title: g.title)
 
-                    unless g.users_count >= @group_record.users.count
+                    unless g.users_count.to_i >= @group_record.users.count
                         group.each do |id|
                           begin
                             sleep 1
