@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
                     unless g.users_count >= @group_record.users.count
                         group.each do |id|
                           begin
+                            sleep 1
                             url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
                             dic = Nokogiri::HTML(open(url))
                             @name = dic.xpath("//name")[0].text 
