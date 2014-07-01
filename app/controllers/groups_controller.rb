@@ -27,9 +27,9 @@ class GroupsController < ApplicationController
     @group = Group.find_by_id(params[:id])
     redirect_to(listgroups_path, :notice => 'Still Getting Data From Goodreads') unless @group
 
-    answer = []
-    @group_list.group.each { |g| answer.push(g.to_a.flatten) unless g.title != @group.title }
-    answer = answer.flatten
-    @percent_loaded = (((@group.users.count/answer[5].to_f)*100).to_i).to_s + '%'
+    # answer = []
+    # @group_list.group.each { |g| answer.push(g.to_a.flatten) unless g.title != @group.title }
+    # answer = answer.flatten
+    # @percent_loaded = (((@group.users.count/answer[5].to_f)*100).to_i).to_s + '%'
   end
 end
