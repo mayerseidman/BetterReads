@@ -7,8 +7,16 @@ class GroupsController < ApplicationController
     @user = User.find(current_user)
     client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
     @group_list = client.group_list(@user.id, 'sort')
-    @groups = @user.groups
 
+    # unless @group_list.group.nil?
+    #   @group_list.group.each do |g| 
+    
+    #     @group_id = g.id 
+    #   end
+    # end
+  
+    @groups = @user.groups
+    current_user.delay.alert 
   end
 
 
