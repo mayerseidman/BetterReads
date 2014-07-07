@@ -57,15 +57,17 @@
 
         </div>
           <span class="bl-icon-close"> <%= image_tag "close.png" %></span>
-
+   
         </section>
         <section>
           <div class="bl-box">
             <h2 class="bl-icon"> <%= image_tag "contact.png" %> <br>
               Contact</h2>
           </div>
-          <div class="bl-content">
 
+          <!-- start -->
+          <div class="bl-content">
+          <div class= "border">
            <p class = "bio1"> <%= image_tag "profilepic.jpg" %>  </p><p class = "bio"> I am Mayer Seidman, a RoR/JS developer who loves technology and solving challenging problems. If you would like to chat about a job opportunity or just in general, you can reach me here:  </p>
 
             <div class = "twitter"><%= link_to image_tag("twitter.png"), "https://twitter.com/mayerseidman", :target => "_blank" %>   
@@ -73,7 +75,7 @@
             
             <div class="gmail"> <%= mail_to "mzseidman@gmail.com", (image_tag "gmail.png") %> </div>
 
-          <p class = "applist"> Other apps I have worked on </p>
+     <!--      <p class = "applist"> Other apps I have worked on </p>
 
          <div class = "Sit4u">  Sit4u  &nbsp;-  &nbsp; </div> <p class="sit4u1"> <%= link_to image_tag("Sit4u.png"), "http://sit4u.co", :target => "_blank" %>    
 
@@ -87,9 +89,31 @@
           <div class = "weatherpane">Weatherpane &nbsp;-  &nbsp;</div> <p class="weatherpane1"><%= link_to image_tag("weather.png"), "https://weatherpane.herokuapp.com", :target => "_blank" %> 
         
         </p><p class = "github3"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/WeatherPane_v2", :target => "_blank" %></p>
+ -->
+      </div>
      
+     <!-- end -->
+
+    
+          <!-- start -->
+          <!-- <div class="bl-content"> -->
+            <br>
+            <br>
+            <br>
+          <div class = "border">
+     
+           <p class = "bio1"> <%= image_tag "profile.jpg" %>  </p><p class = "bio2"> I'm Tyler Wasden, a RoR/JS developer currently interning at Ticketbud where I enjoy diving into our complex codebase handling bug reports and adding features. If you would like to get in touch with me you can reach me here:  </p>
+
+            <div class = "twitter"><%= link_to image_tag("twitter.png"), "https://twitter.com/twdrlstyler", :target => "_blank" %>   
+            </div> <div class = "Linkedin"> <%= link_to image_tag("Linkedin.png"), "https://www.linkedin.com/pub/tyler-wasden/10/179/156/", :target => "_blank" %> </div>
+            
+            <div class="gmail"> <%= mail_to "twasden@gmail.com", (image_tag "gmail.png") %> </div>
+        
+      </div>
+     <!-- end -->
 
           <span class="bl-icon-close"><p class="close"><%= image_tag "close.png" %></p></span>
+        </div>
         </section>
         <!-- Panel items for the works -->
         <div class="bl-panel-items" id="bl-panel-work-items"></div>

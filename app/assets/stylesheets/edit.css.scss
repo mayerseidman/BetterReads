@@ -50,6 +50,13 @@ margin-left: 780px;
   margin-top: -45px;
 }
 
+.c2g img{
+/*  margin-left: 50px;*/
+/*  margin-top: 45px;*/
+  width: 230px;
+}
+
+
 .sit4u1 img {
 
   width: 70px;
@@ -184,6 +191,14 @@ h1 {
   font-size: 30px;
   margin-left: 350px;
   margin-top: -250px;
+}
+
+.bio2 {
+  font-family: serif;
+  color: white;
+  font-size: 30px;
+  margin-left: 350px;
+  margin-top: -200px;
 }
 
 .applist {
@@ -398,6 +413,7 @@ div.bl-panel-items > div > div {
 /* Custom content */
 
 // .bl-content p {
+//   margin-top: 20px;
 //   margin: 0 auto;
 //   padding-bottom: 15px;
 //   font-size: 1.7em;
@@ -675,4 +691,9 @@ section.bl-expand .bl-icon-x {
   .bl-content > ul li {
     width: 40%;
   }
+}
+
+.border {
+  border: solid;
+  border-color: black;
 }
