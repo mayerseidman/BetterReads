@@ -17,13 +17,13 @@
         markers = handler.addMarkers([
             
           <% @group.users.each do |member| %>
-            <% if member.location.present? %>
+            <% if member.coordinates.present? %>
              <% y = "http://www.goodreads.com/message/new/#{member.id}" %>
             {
             
-              "lat": "<%= eval(member.location)[0] %>",
-              "lng": "<%= eval(member.location)[1] %>",
-              "infowindow": "<p class = members><%= member.name %> </p><p><%= member.location%></p>   <a href='<%= y %>', target='blank'>Message User</a> "
+              "lat": "<%= eval(member.coordinates)[0] %>",
+              "lng": "<%= eval(member.coordinates)[1] %>",
+              "infowindow": "<p class = members><%= member.name %> </p><p><%= member.city%></p>   <a href='<%= y %>', target='blank'>Message User</a> "
             },
             <% end %>
           <% end %>
