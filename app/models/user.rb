@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
                             coordinates = location.coordinates
                             if coordinates.present? && coordinates != "[37.09024, -95.712891]"
                                 def check_location
-                                    if @group_record.users.collect {|u| u.location}.include?(coordinates)
+                                    if @group_record.users.collect {|u| u.coordinates}.include?(coordinates)
                                         coordinates = coordinates.sub(coordinates[5], coordinates[5].next)
                                         check_location
                                     end
