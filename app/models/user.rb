@@ -50,7 +50,7 @@ puts "ola"
                                 puts "new user"    
                             end
                           begin
-                            sleep 2
+                            sleep 1
 
                             @url = "https://www.goodreads.com/user/show/#{id}.xml?key=01QcdA8pt51gOUi4UJj6A"
                             dic = Nokogiri::HTML(open(@url))
