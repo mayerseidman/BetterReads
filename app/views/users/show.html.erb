@@ -3,29 +3,29 @@
       <div id="bl-main" class="bl-main">
         <section>
           <div class="bl-box">
-          <h2 class="bl-icon"> <%= image_tag "books.png" %> <br>What is BetterReads?</h2>  
+          <h2 class="bl-icon"> <%= image_tag "books.png" %> <br>What is BetterReads?</h2>   <!-- <h3 class= "title"> BetterReads</h3> -->
         </div>
           <div class="bl-content">
-            <h2>About this layout</h2>
-            <p>This responsive layout is based on an initial grid of four boxes. Once a box is clicked, it gets resized to fullscreen and the other boxes scale down and fade out. In the work section we experiment with another transition which is to show a panel by making it appear from the bottom while scaling the current one down. To see it in action, open the work section and click on one of the portfolio items and navigate through them.</p>
+            <h1 class="header">Discussing a book is always better in  person-with <br> BetterReads, you can do this in three easy steps!
+
+            <h2 class="step1">Step 1</h2>
+            <div class="circle">Click on "Connect" & sign into your Goodreads account. </div>
+            <h2 class="step2">Step 2</h2>
+            <div class="circle2">Click on one of your groups to see it's members' locations. </div>
+            
+            <h2 class="step3">Step 3</h2>
+            <div class="circle3">Find a member (on the map), click on them and "message" them! </div>
           </div>
-          <span class="bl-icon-close"><h2>Close</h2></span>
+          <span class="bl-icon-close"><%= image_tag "close.png" %></span>
         </section>
         <section id="bl-work-section">
           <div class="bl-box">
             <h2 class="bl-icon"> <%= image_tag "laptop.png" %> <br>The Development Process</h2>
           </div>
           <div class="bl-content">
-            <h2>My Works</h2>
-            <p>Mung bean maize dandelion sea lettuce catsear bunya nuts ricebean tatsoi caulie horseradish pea.</p>
-            <ul id="bl-work-items">
-              <li data-panel="panel-1"><a href="#"></a></li>
-              <li data-panel="panel-2"><a href="#"></a></li>
-              <li data-panel="panel-3"><a href="#"></a></li>
-              <li data-panel="panel-4"><a href="#"></a></li>
-            </ul>
+             <p class = "comingsoon"><%= image_tag "comingsoon.png" %></p>
           </div>
-          <span class="bl-icon bl-icon-close"></span>
+          <span class="bl-icon-close"><%= image_tag "close.png" %></span>
         </section>
         <section>
           <div class="bl-box">
@@ -57,20 +57,64 @@
 
 
         </div>
-          <span class="bl-icon bl-icon-close"></span>
-
+          <span class="bl-icon-close"> <%= image_tag "close.png" %></span>
+   
         </section>
         <section>
           <div class="bl-box">
             <h2 class="bl-icon"> <%= image_tag "Profilepic.png" %> <br>
               Contact</h2>
           </div>
+
+          <!-- start -->
           <div class="bl-content">
-            <h2>Get in touch</h2>
-            <p>Pinterest semiotics single-origin coffee craft beer thundercats irony, tumblr bushwick intelligentsia pickled. Narwhal mustache godard master cleanse street art, occupy ugh selfies put a bird on it cray salvia four loko gluten-free shoreditch. Occupy american apparel freegan cliche. Mustache trust fund 8-bit jean shorts mumblecore thundercats. Pour-over small batch forage cray, banjo post-ironic flannel keffiyeh cred ethnic semiotics next level tousled fashion axe. Sustainable cardigan keytar fap bushwick bespoke.</p>
-          </div>
-          <p><%= image_tag "pgh.jpg" %> </p>
-          <span class="bl-icon bl-icon-close"></span>
+          <div class= "border">
+           <p class = "bio1"> <%= image_tag "profilepic.jpg" %>  </p><p class = "bio"> I am Mayer Seidman, a RoR/JS developer who loves technology and solving challenging problems. If you would like to chat about a job opportunity or just in general, you can reach me here:  </p>
+
+            <div class = "twitter"><%= link_to image_tag("twitter.png"), "https://twitter.com/mayerseidman", :target => "_blank" %>   
+            </div> <div class = "Linkedin"> <%= link_to image_tag("Linkedin.png"), "https://www.linkedin.com/pub/mayer-seidman/37/502/91a", :target => "_blank" %> </div>
+            
+            <div class="gmail"> <%= mail_to "mzseidman@gmail.com", (image_tag "gmail.png") %> </div>
+
+     <!--      <p class = "applist"> Other apps I have worked on </p>
+
+         <div class = "Sit4u">  Sit4u  &nbsp;-  &nbsp; </div> <p class="sit4u1"> <%= link_to image_tag("Sit4u.png"), "http://sit4u.co", :target => "_blank" %>    
+
+       </p> <p class = "github"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/Sit4U", :target => "_blank" %>
+
+          <div class = "beautyengine">  Beauty engine  &nbsp;-  &nbsp;</div> <p class="beautyengine1"><%= link_to image_tag("beautyengine.png"), "https://beautyengine.herokuapp.com", :target => "_blank" %> 
+
+        </p><p class = "github2"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/Miss-Watson", :target => "_blank" %></p>
+       </p> 
+         
+          <div class = "weatherpane">Weatherpane &nbsp;-  &nbsp;</div> <p class="weatherpane1"><%= link_to image_tag("weather.png"), "https://weatherpane.herokuapp.com", :target => "_blank" %> 
+        
+        </p><p class = "github3"><%= link_to image_tag("github.png"), "https://github.com/mayerseidman/WeatherPane_v2", :target => "_blank" %></p>
+ -->
+      </div>
+     
+     <!-- end -->
+
+    
+          <!-- start -->
+          <!-- <div class="bl-content"> -->
+            <br>
+            <br>
+            <br>
+          <div class = "border">
+     
+           <p class = "bio1"> <%= image_tag "profile.jpg" %>  </p><p class = "bio2"> I'm Tyler Wasden, a RoR/JS developer currently interning at Ticketbud where I enjoy diving into our complex codebase handling bug reports and adding features. If you would like to get in touch with me you can reach me here:  </p>
+
+            <div class = "twitter"><%= link_to image_tag("twitter.png"), "https://twitter.com/twdrlstyler", :target => "_blank" %>   
+            </div> <div class = "Linkedin"> <%= link_to image_tag("Linkedin.png"), "https://www.linkedin.com/pub/tyler-wasden/10/179/156/", :target => "_blank" %> </div>
+            
+            <div class="gmail"> <%= mail_to "twasden@gmail.com", (image_tag "gmail.png") %> </div>
+        
+      </div>
+     <!-- end -->
+
+          <span class="bl-icon-close"><p class="close"><%= image_tag "close.png" %></p></span>
+        </div>
         </section>
         <!-- Panel items for the works -->
         <div class="bl-panel-items" id="bl-panel-work-items"></div>
@@ -218,4 +262,4 @@
         Boxlayout.init();
       });
     </script>
->>>>>>> 5f1c226cff2d311921614de9f65965067e080779
+

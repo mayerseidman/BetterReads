@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  
   end
 
   def index
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+  
   end
 
 end

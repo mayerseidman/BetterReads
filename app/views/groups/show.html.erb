@@ -1,15 +1,13 @@
-
-<!-- <p>
-<% x = 0 %>
-<%= @auth_data %><br>
-<%= @current_user.uid %><br>
-<%= @fun %><br>
-<% @name.each do |member| %>
-  <% x += 1 %>
-  <%= x %>:<%= member %><br>
-  <%= @city[x-1] %><br>
-  <%= @place %>
-<% end %> </p> -->
+<div id="user-nav">
+  <% if current_user %>
+    Signed in as <%= current_user.name %>
+    <%= link_to "Sign out", signout_path %>
+  <% else %>
+    <%= link_to "Sign in with Goodreads", "/auth/Goodreads" %>
+  <% end %>
+</div>
+<div class = "back"> <%= link_to "Back to Groups Index", listgroups_path %> </div>
+<body class = "index"> </body> 
 
 <!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
 <script type="text/javascript">
@@ -17,16 +15,17 @@
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers([
-          <% x = 0 %>
-     
-          <% @name.each do |member| %>
-             <% y = "http://www.goodreads.com/message/new/#{@id[x]}" %>
+            
+          <% @group.users.each do |member| %>
+            <% if member.coordinates.present? %>
+             <% y = "http://www.goodreads.com/message/new/#{member.id}" %>
             {
-              "lat": "<%= @city[x][0] %>",
-              "lng": "<%= @city[x][1] %>",
-              "infowindow": "<p class = members><%= member %> -  <%= @place[x] %> </p> <a href='<%= y %>', target='blank'>Message User</a> "
+            
+              "lat": "<%= eval(member.coordinates)[0] %>",
+              "lng": "<%= eval(member.coordinates)[1] %>",
+              "infowindow": "<p class = members><%= member.name %> </p><p><%= member.city%></p>   <a href='<%= y %>', target='blank'>Message User</a> "
             },
-            <%  x += 1 %>
+            <% end %>
           <% end %>
         ]);
         handler.bounds.extendWith(markers);
@@ -39,6 +38,9 @@
 
     google.maps.event.addDomListener(window, "load", initialize);
   </script>
+<!-- <div><%= @group.title.gsub("amp;", "") %></div> -->
+<!-- <div><%= @percent_loaded %></div>  
+<div><%= @group.users.count %> members</div>   -->
 <div style='width: 1000px;'>
   <div id="map" style='width: 1030px; height: 500px;'></div>
 </div>

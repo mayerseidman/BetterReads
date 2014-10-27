@@ -12,11 +12,202 @@
 }
 
 
+.twitter {
+  margin-left: -200px;
+  text-align: center;
+}
+
+.Linkedin {
+  margin-top: -101px;
+  text-align: center;
+  margin-left: 290px;
+}
+
+.gmail {
+text-align: center;
+margin-top: -101px;
+margin-left: 780px;
+}
+
+.twitter img {
+
+  width: 100px;
+}
+
+.Linkedin img {
+  width: 100px;
+
+}
+
+.gmail img {
+  width: 100px;
+}
+
+
+.sit4u1 {
+
+  margin-left: 50px;
+  margin-top: -45px;
+}
+
+.c2g img{
+/*  margin-left: 50px;*/
+/*  margin-top: 45px;*/
+  width: 230px;
+}
+
+
+.sit4u1 img {
+
+  width: 70px;
+  margin-left: 30px;
+}
+
+.Sit4u {
+
+  font-size: 25px;
+  font-family: serif;
+  color:white;
+
+}
+
+
+.beautyengine {
+
+ font-size: 25px;
+  font-family: serif;
+  color:white;
+  text-align: center;
+  margin-top: -75px;
+  margin-right: 230px;
+
+}
+
+
+.beautyengine1 {
+  margin-top: 0px;
+  margin-left: -75px;
+
+}
+
+.beautyengine1 img {
+
+width: 60px;
+margin-left: 630px;
+margin-top: -40px;
+height: 60px;
+}
+
+
+.weatherpane {
+
+ font-size: 25px;
+  font-family: serif;
+  color:white;
+  text-align: center;
+  margin-top: -75px;
+  margin-right: -535px;
+
+}
+
+
+.weatherpane1 {
+  margin-top: 0px;
+  margin-left: -80px;
+
+}
+
+.weatherpane1 img {
+
+width: 60px;
+margin-left: 1010px;
+margin-top: -40px;
+height: 60px;
+}
+
+
+.github3 {
+
+  text-align: center;
+  margin-top: -80px;
+  margin-left: 980px;
+}
+
+.github3 img {
+
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-left: -80px;
+}
+
+
+
+
+.github {
+
+  text-align: center;
+  margin-top: -70px;
+  margin-left: -955px;
+}
+
+.github img {
+
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-left: 170px;
+}
+
+
+.github2 {
+
+  text-align: center;
+  margin-top: -80px;
+  margin-left: 90px;
+}
+
+.github2 img {
+
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-left: 65px;
+  margin-top: -1px;
+}
+
+
+
 
 
 h1 {
     color: black;
 
+}
+
+.bio {
+  font-family: serif;
+  color: white;
+  font-size: 30px;
+  margin-left: 350px;
+  margin-top: -250px;
+}
+
+.bio2 {
+  font-family: serif;
+  color: white;
+  font-size: 30px;
+  margin-left: 350px;
+  margin-top: -200px;
+}
+
+.applist {
+
+  margin-top: 20px;
+  font-family: serif;
+  color:white;
+  font-size: 30px;
+  text-align: left;
 }
 
 p {
@@ -49,7 +240,7 @@ body {
 }
 
 a {
-  color: gray;
+  color: #D25068;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 2px;
@@ -190,9 +381,20 @@ a:hover {
   pointer-events: none;
 }
 
-.bl-icon-close:before {
-  content: "\e005";
+.bl-main > section .bl-icon-x {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
 }
+
+
+// .bl-icon-close:before {
+//   content: "\e005";
+// }
 
 .bl-content, 
 div.bl-panel-items > div > div {
@@ -210,18 +412,19 @@ div.bl-panel-items > div > div {
 
 /* Custom content */
 
-.bl-content p {
-  margin: 0 auto;
-  padding-bottom: 15px;
-  font-size: 1.7em;
-  line-height: 1.8;
-}
+// .bl-content p {
+//   margin-top: 20px;
+//   margin: 0 auto;
+//   padding-bottom: 15px;
+//   font-size: 1.7em;
+//   line-height: 1.8;
+// }
 
-.bl-content h2 {
-  font-size: 3em;
-  font-weight: 300;
-  margin: 0 0 20px 0;
-}
+// .bl-content h2 {
+//   font-size: 3em;
+//   font-weight: 300;
+//   margin: 0 0 20px 0;
+// }
 
 .bl-content article {
   padding: 20px 40px 20px 0px;
@@ -458,11 +661,28 @@ section.bl-expand .bl-icon-close {
   transition: opacity 0.3s linear 0.5s;
 }
 
+.bl-content,
+.bl-icon-x {
+  -webkit-transition: opacity 0.1s linear 0s;
+  -moz-transition: opacity 0.1s linear 0s;
+  transition: opacity 0.1s linear 0s;
+}
+
+section.bl-expand .bl-content,
+section.bl-expand .bl-icon-x {
+  pointer-events: auto;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s linear 0.5s;
+  -moz-transition: opacity 0.3s linear 0.5s;
+  transition: opacity 0.3s linear 0.5s;
+}
+
+
 @media screen and (max-width: 46.5em) {
   .bl-content,
   .bl-box {
     font-size: 75%;
-  }
+  }s
 
   .bl-expand .bl-box {
     height: 130px;
@@ -471,4 +691,9 @@ section.bl-expand .bl-icon-close {
   .bl-content > ul li {
     width: 40%;
   }
+}
+
+.border {
+  border: solid;
+  border-color: black;
 }
