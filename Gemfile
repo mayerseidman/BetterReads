@@ -4,34 +4,41 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+gem 'unicorn'
+gem 'omniauth-goodreads', require: 'omniauth-goodreads'
 gem 'goodreads'
 gem 'omniauth-goodreads', require: 'omniauth-goodreads'
 gem 'multi_xml'
 gem 'omniauth-oauth'
+gem'pry'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 gem 'unirest'
 gem 'figaro'
 gem 'hirb'
+
 gem 'nokogiri'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'geocoder'
 
+gem "font-awesome-rails"
 
 gem 'better_errors'
 gem 'binding_of_caller'
-
+gem 'rails_12factor', group: :production
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-
+gem 'pg'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

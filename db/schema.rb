@@ -11,7 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501153555) do
+ActiveRecord::Schema.define(version: 20140803185546) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "groups", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_users", id: false, force: true do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", using: :btree
+  add_index "groups_users", ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id", using: :btree
+
+  create_table "locations", force: true do |t|
+    t.string   "city"
+    t.string   "coordinates"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
@@ -22,6 +62,10 @@ ActiveRecord::Schema.define(version: 20140501153555) do
     t.string   "oauth_token"
     t.string   "oauth_secret"
     t.string   "uid"
+    t.string   "email"
+    t.string   "city"
+    t.string   "auth"
+    t.string   "coordinates"
   end
 
 end

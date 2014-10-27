@@ -1,0 +1,39 @@
+
+<div id="user-nav">
+  <% if @user %>
+    Signed in as <%= @user.name %>
+    <%= link_to "Sign out", signout_path %>
+  <% else %>
+    <%= link_to "Sign in with Goodreads", "/auth/Goodreads" %>
+  <% end %>
+</div>
+ <body class = "index"> </body> 
+
+<div class = "grouplist"><h1><%= @user.name %>'s Groups </h1></div>
+
+<% if @user.groups.count <= @group_list.count %>
+  <h2 style="text-align:center;">We are busy gathering all your data from goodreads, please refresh periodically until this message dissapears</h2>
+<% end %>
+<div class = "groupl">
+  <% if @group_list.group.present? %>
+    <% @group_list.group.each do |g| %>
+      <% @group_id = g.id %>  
+      <% if @groups != nil && @groups.collect {|h| (h.title)}.include?(g.title) %>              
+        <h2><%= link_to g.title, group_path(@group_id), 'data-no-turbolink' => true %></h2>   
+      <% else %>
+        <h2><%= link_to g.title, group_path(@group_id), 'data-no-turbolink' => true %> may not be ready</h2> 
+      <% end %>     
+    <% end %>
+  <% else %>
+    
+  <div class="popup">
+  <div class="wrapper1">
+
+ <h2>To see what the app can do, you must belong to some groups </h2><br>
+    <%= button_to 'Join some reading groups', "https://www.goodreads.com/group", class: "push_button blue" , :method => :get , form: {target: '_blank'} %>
+   </div>
+</div>
+
+  <% end %>
+</div>
+
