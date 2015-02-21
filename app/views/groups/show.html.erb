@@ -16,14 +16,13 @@
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers([
             
-          <% @group.users.each do |member| %>
-            <% if member.location.present? %>
-             <% y = "http://www.goodreads.com/message/new/#{member.id}" %>
+          <% @users.each do |member| %>
+            <% if !member[:coordinates].empty? %>
+             <% y = "http://www.goodreads.com/message/new/#{member[:id]}" %>
             {
-            
-              "lat": "<%= eval(member.location)[0] %>",
-              "lng": "<%= eval(member.location)[1] %>",
-              "infowindow": "<p class = members><%= member.name %> </p><p><%= member.location%></p>   <a href='<%= y %>', target='blank'>Message User</a> "
+              "lat": "<%= member[:coordinates].split(',')[0].gsub('[', '') %>",
+              "lng": "<%= member[:coordinates].split(',')[1].gsub(']', '') %>",
+              "infowindow": "<p class = members><%= member[:name] %> </p><p><%= member[:city] %></p>   <a href='<%= y %>', target='blank'>Message User</a> "
             },
             <% end %>
           <% end %>
@@ -38,9 +37,9 @@
 
     google.maps.event.addDomListener(window, "load", initialize);
   </script>
-<!-- <div><%= @group.title.gsub("amp;", "") %></div> -->
-<!-- <div><%= @percent_loaded %></div>  
-<div><%= @group.users.count %> members</div>   -->
+<!-- <div><= #@group.title.gsub("amp;", "") ></div> -->
+<!-- <div><= # @percent_loaded ></div>  
+<div><%= @users.count %> members</div>   -->
 <div style='width: 1000px;'>
   <div id="map" style='width: 1030px; height: 500px;'></div>
 </div>

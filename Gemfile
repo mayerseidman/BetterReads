@@ -27,6 +27,8 @@ gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'geocoder'
 
+gem "font-awesome-rails"
+
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'rails_12factor', group: :production
@@ -64,3 +66,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'byebug'

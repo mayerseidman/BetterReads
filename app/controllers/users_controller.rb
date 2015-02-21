@@ -20,11 +20,11 @@ class UsersController < ApplicationController
   end
 
   def index
-  
+   
   end
 
   def show
-
+  
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607233218) do
+ActiveRecord::Schema.define(version: 20140803185546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20140607233218) do
   add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", using: :btree
   add_index "groups_users", ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id", using: :btree
 
+  create_table "locations", force: true do |t|
+    t.string   "city"
+    t.string   "coordinates"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,8 +62,10 @@ ActiveRecord::Schema.define(version: 20140607233218) do
     t.string   "oauth_token"
     t.string   "oauth_secret"
     t.string   "uid"
-    t.string   "location"
+    t.string   "email"
+    t.string   "city"
     t.string   "auth"
+    t.string   "coordinates"
   end
 
 end

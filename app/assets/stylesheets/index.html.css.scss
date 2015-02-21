@@ -1,21 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require font-awesome
- *= require_self
- *= require_tree .
- /*
- *= require font-awesome
- */
-
-
 
 .popup{
    position:fixed;
@@ -26,13 +8,6 @@
   left:-50%;
   top: -50%;
   margin-top: 200px;
-}  
-
-.popup .wrapper1{
-  position:relative; 
-  left:-50%;
-  top: -50%;
-  margin-top: 95px;
 }  
 .push_button {
     width:350px;
@@ -113,7 +88,6 @@
 .blue {
     text-shadow:-1px -1px 0 #2C7982;
     background: #3EACBA;
-    cursor:pointer;
     border:1px solid #379AA4;
     background-image:-webkit-linear-gradient(top, #48C6D4, #3EACBA);
     background-image:-moz-linear-gradient(top, #48C6D4, #3EACBA);
@@ -138,4 +112,3 @@
     background-image:-o-linear-gradient(top, #3EACBA, #48C6D4);
     background-image:linear-gradient(top, #3EACBA, #48C6D4);
 }
-
