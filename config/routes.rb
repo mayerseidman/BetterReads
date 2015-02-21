@@ -8,6 +8,7 @@ Omniauthpls::Application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'groups', to: 'groups#index', as: 'listgroups'
   get 'group/:id' , to: 'groups#show', as: 'group'
+  get 'group/send_alert/:group_id', to: 'groups#send_alert', as: 'group_send_alert'
 
 
 end
