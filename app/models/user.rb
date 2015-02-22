@@ -34,16 +34,16 @@ class User < ActiveRecord::Base
 
         my_users = my_users(group_id, client)
         group = group(group_id, client)
-        binding.pry
 
-        end_users = []
-        @check_against = []
-        my_users.each do |user|
+
+
+        check_against = []
+        my_users.map do |user|
         # db_user = User.where(id: user[:id]).first
         # if db_user.nil?
         
           if user[:coordinates].present? 
-            user = check_location(user)
+            user[:coordinates] = check_location(user[:coordinates], check_against)
           end
 
         #   db_user = User.create(
@@ -58,10 +58,11 @@ class User < ActiveRecord::Base
         #   db_user.groups << group
         #   group.users << user
         # end 
-          end_users << user
-          @check_against << user[:coordinates]
+          
+          check_against << user[:coordinates]
+          user
         end
-        end_users
+        my_users
     end
 
 
@@ -167,16 +168,12 @@ class User < ActiveRecord::Base
         my_users
       end
       
-      def check_location(user)
- 
-        if @check_against.include?(user[:coordinates])
-            binding.pry          
-            user[:coordinates][-4] = user[:coordinates][-4].succ
+      def check_location(coordinates, range)
+        x = coordinates
+        if range.include?(coordinates)
+            x = coordinates[0..-5]+rand(0..9).to_s+rand(0..9).to_s+rand(0..9).to_s+rand(0..9).to_s
         end
-        # check_location(user) if @check_against.include?(user[:coordinates])
-
-        binding.pry
-        user
+        x
       end
 
       def group(group_id, client)
