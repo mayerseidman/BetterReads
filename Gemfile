@@ -14,7 +14,7 @@ gem 'omniauth-goodreads', require: 'omniauth-goodreads'
 gem 'goodreads'
 gem 'multi_xml'
 gem 'omniauth-oauth'
-gem'pry'
+gem 'pry'
 gem 'delayed_job_active_record'
 gem 'daemons'
 

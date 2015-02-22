@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-     require 'rubygems'
-      require 'nokogiri'
-      require 'open-uri'
+    require 'rubygems'
+    require 'nokogiri'
+    require 'open-uri'
 
 
 
@@ -30,66 +30,39 @@ class User < ActiveRecord::Base
         #  Then we map out on the map where the coordinates are = the city 
 
         # TODO: check if the group_id exists and return
-
         client = Goodreads::Client.new(oauth_token: self.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
 
-        # get users for group_id
-        n = 10
-        url = "https://www.goodreads.com/group/#{group_id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'" # &page=#{n}
-        doc = Nokogiri::HTML(open(url))
-        users = doc.xpath("//user/id").map(&:text)
-        # gets the profile for each user
-        my_users = []
-        users.each do |user|
-          profile_url = "https://www.goodreads.com/user/show/#{user}.xml?key=01QcdA8pt51gOUi4UJj6A"
-      
-          dic = Nokogiri::HTML(open(profile_url))
-          name = dic.xpath("//name")[0].text
-          place = dic.xpath("//location").text
-          location = Location.where(city: place).first_or_create(coordinates: (Geocoder.coordinates place).to_s)
-          coordinates = location.coordinates
-          my_users << {id: user, name: name, place: place, city: location.city, coordinates: coordinates}
-        end
+        my_users = my_users(group_id, client)
+        group = group(group_id, client)
+        binding.pry
 
-        group = Group.where(id: group_id).first
-        unless group
-          # get group profile
-          goodreader_group = client.group_list(self.id, 'sort').group.select{|item| item.id == group_id}
-          title = goodreader_group.first.title
-          group = Group.create(id: group_id, title: title)        
-        end
-
+        end_users = []
+        @check_against = []
         my_users.each do |user|
-          db_user = User.where(id: user[:id]).first
-          if db_user.nil?
-            if user[:coordinates].present? && user[:coordinates] != "[37.09024, -95.712891]"
-                               
-              def check_location(group, user)
-                  if group.users.collect {|u| u.coordinates}.include?(user[:coordinates])
-                      s2 = user[:coordinates][-4].succ
-                      user[:coordinates][-4] = s2
-                   
-                      check_location(group, user)
-                  end
-              end
-
-              check_location(group, user)
-            end
-            db_user = User.create(
-              id: user[:id],
-              name: user[:name],
-              coordinates: user[:coordinates],
-              city: user[:city]
-            )
+        # db_user = User.where(id: user[:id]).first
+        # if db_user.nil?
+        
+          if user[:coordinates].present? 
+            user = check_location(user)
           end
-          
-          if !db_user.groups.include?(group)
-            db_user.groups << group
-            # group.users << user
-          end 
-        end
 
-        return my_users
+        #   db_user = User.create(
+        #     id: user[:id],
+        #     name: user[:name],
+        #     coordinates: user[:coordinates],
+        #     city: user[:city]
+        #   )
+        # end
+        
+        # if !db_user.groups.include?(group)
+        #   db_user.groups << group
+        #   group.users << user
+        # end 
+          end_users << user
+          @check_against << user[:coordinates]
+        end
+        end_users
+    end
 
 
         #byebug
@@ -167,5 +140,53 @@ class User < ActiveRecord::Base
 #                 end
 #             end
 #         end 
-    end
+
+    private 
+
+      def my_users(group_id, client)
+
+        client = Goodreads::Client.new(oauth_token: self.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+
+        # get users for group_id
+        n = 10
+        url = "https://www.goodreads.com/group/#{group_id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'" # &page=#{n}
+        doc = Nokogiri::HTML(open(url))
+        users = doc.xpath("//user/id").map(&:text)
+        # gets the profile for each user
+        my_users = []
+        users.each do |user|
+          profile_url = "https://www.goodreads.com/user/show/#{user}.xml?key=01QcdA8pt51gOUi4UJj6A"
+      
+          dic = Nokogiri::HTML(open(profile_url))
+          name = dic.xpath("//name")[0].text
+          place = dic.xpath("//location").text
+          location = Location.where(city: place).first_or_create(coordinates: (Geocoder.coordinates place).to_s)
+          coordinates = location.coordinates
+          my_users << {id: user, name: name, place: place, city: location.city, coordinates: coordinates}
+        end
+        my_users
+      end
+      
+      def check_location(user)
+ 
+        if @check_against.include?(user[:coordinates])
+            binding.pry          
+            user[:coordinates][-4] = user[:coordinates][-4].succ
+        end
+        # check_location(user) if @check_against.include?(user[:coordinates])
+
+        binding.pry
+        user
+      end
+
+      def group(group_id, client)
+        group = Group.where(id: group_id).first
+        unless group
+          # get group profile
+          goodreader_group = client.group_list(self.id, 'sort').group.select{|item| item.id == group_id}
+          title = goodreader_group.first.title
+          group = Group.create(id: group_id, title: title)        
+        end
+        group
+      end
 end  
