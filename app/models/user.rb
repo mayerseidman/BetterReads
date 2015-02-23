@@ -39,8 +39,11 @@ class User < ActiveRecord::Base
         doc = Nokogiri::HTML(open(url))
         users = doc.xpath("//user/id").map(&:text)
         # gets the profile for each user
+
+
         my_users = []
         users.each do |user|
+          sleep 1
           profile_url = "https://www.goodreads.com/user/show/#{user}.xml?key=01QcdA8pt51gOUi4UJj6A"
       
           dic = Nokogiri::HTML(open(profile_url))
