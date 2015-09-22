@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803185546) do
+ActiveRecord::Schema.define(version: 20150922045803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140803185546) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "goodreads_id"
   end
 
   create_table "groups_users", id: false, force: true do |t|
@@ -48,7 +49,16 @@ ActiveRecord::Schema.define(version: 20140803185546) do
 
   create_table "locations", force: true do |t|
     t.string   "city"
-    t.string   "coordinates"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+  end
+
+  create_table "members", force: true do |t|
+    t.integer  "goodreads_id"
+    t.integer  "location_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

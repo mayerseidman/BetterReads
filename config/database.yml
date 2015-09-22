@@ -9,7 +9,7 @@ development:
   database: my_database_development
   pool: 5
   timeout: 25000
-  username: mayerseidman
+  username: 
  
 
 test:
