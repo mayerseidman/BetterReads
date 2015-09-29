@@ -1,21 +1,13 @@
 class GroupsController < ApplicationController
-  require 'rubygems'
-  require 'nokogiri'
-  require 'open-uri'
+  # require 'rubygems'  require 'nokogiri'
+  # require 'open-uri'
 
   def index
-    @user = User.find(current_user)
-    client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
-    @group_list = client.group_list(@user.id, 'sort')
-
-    # unless @group_list.group.nil?
-    #   @group_list.group.each do |g| 
-    
-    #     @group_id = g.id 
-    #   end
-    # end
+    @groups = current_user.groups 
+  #   client = Goodreads::Client.new(oauth_token: @user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
+  #   @group_list = client.group_list(@user.id, 'sort')
   
-    @groups = @user.groups
+  #   @groups = @user.groups
   end
 
   def send_alert
@@ -25,7 +17,8 @@ class GroupsController < ApplicationController
 
 
   def show
-    @users = current_user.alert(params[:id])
+    @group = Group.find(params[:id])
+    @members = @group.members.includes(:location)
 
 
     #client = Goodreads::Client.new(oauth_token: current_user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)

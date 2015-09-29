@@ -6,7 +6,8 @@ class MemberPopulator
 	def populate
 		user_ids.map do |u|
 			profile_url = "https://www.goodreads.com/user/show/#{u}.xml?key=01QcdA8pt51gOUi4UJj6A"
-			dic = Nokogiri::HTML(open(profile_url))
+			profile_contents = Net::HTTP.get(URI.parse(profile_url))
+			dic = Nokogiri::HTML(profile_contents)
 			name = dic.xpath("//name")[0].text
 			city = dic.xpath("//location").text
 			member = Member.find_or_create_by(goodreads_id: u)
@@ -17,13 +18,19 @@ class MemberPopulator
 			end
 			member.name = name
 			member.save!
+			unless @group.members.include?(member)
+				@group.members << member
+			end
 		end
+		@group.status = "populated"
+		@group.save!
 	end
 
 	private
 		def user_ids
 			url = "https://www.goodreads.com/group/#{@group.goodreads_id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'" # &page=#{n}
-			doc = Nokogiri::HTML(open(url))
+			member_data =  Net::HTTP.get(URI.parse(url))
+			doc = Nokogiri::HTML(member_data)
 			doc.xpath("//user/id").map(&:text) 
 		end 
 end
