@@ -8,12 +8,20 @@ class GroupsController < ApplicationController
   #   @group_list = client.group_list(@user.id, 'sort')
   
   #   @groups = @user.groups
+    respond_to do |format|
+      format.html 
+      format.json do 
+        render json: {
+          group_total: current_user.group_total, 
+          groups: current_user.groups.map do |g|
+            { title: g.title,
+              url: group_url(g),
+              status: g.status }
+          end
+        }
+      end
+    end
   end
-
-  def send_alert
-    
-  end
-
 
 
   def show
