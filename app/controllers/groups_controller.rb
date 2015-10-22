@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
       format.html 
       format.json do 
         render json: {
+          groups_status: groups_status,
           group_total: current_user.group_total, 
           groups: current_user.groups.map do |g|
             { title: g.title,
@@ -39,4 +40,13 @@ class GroupsController < ApplicationController
     # answer = answer.flatten
     # @percent_loaded = (((@group.users.count/answer[5].to_f)*100).to_i).to_s + '%'
   end
+
+  private 
+    def groups_status
+      if current_user.group_total == current_user.groups.where(status: "populated").count
+        "done"
+      else
+        "fetching"
+      end
+    end
 end

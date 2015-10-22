@@ -1,0 +1,22 @@
+
+<% if current_user.group_total.nil? %>
+  <p>We are working on it</p>
+<% elsif current_user.group_total == 0 %>
+  <p>sorry, no groups</p>
+<% else %>
+  <div class = "grouplist"><h1><%= current_user.name %>'s Groups </h1></div>
+  <div class = "groupl">
+    <% if @groups.any? %>
+      <% @groups.each do |g| %>
+        <h2><%= link_to g.title, group_path(g.id), 'data-no-turbolink' => true %></h2>
+        <span><%= g.status %></span>
+      <% end %>
+    <% else %>  
+      <div class="popup"></div>
+      <div class="wrapper1"></div>
+
+      <h2>To see what the app can do, you must belong to some groups </h2><br>
+        <%= button_to 'Join some reading groups', "https://www.goodreads.com/group", class: "push_button blue" , :method => :get , form: {target: '_blank'} %>
+    <% end %>
+  </div>
+<% end %>

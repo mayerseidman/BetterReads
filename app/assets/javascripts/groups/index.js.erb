@@ -1,0 +1,31 @@
+if (_.isUndefined(window.BetterReads)) { window.BetterReads = {}; }
+if (_.isUndefined(window.BetterReads.Groups)) { window.BetterReads.Groups = {}; }
+
+BetterReads.Groups.Index = function() {
+
+	var displayGroups = function(data) {
+		//todo different groups statuses and totals
+		console.log(data);
+		var groupTemplateText = $('#groupTemplate').html();
+		var groupTemplate = _.template(groupTemplateText);
+		var groups = data["groups"];
+		$(".groupsContainer").html("");
+		_.each(groups, function(group){
+			var groupHtml = groupTemplate({name: group.title, status: group.status});
+			$('.groupsContainer').append(groupHtml);		
+		})
+	}
+  var setup = function() {
+  	_.templateSettings = {
+  	  interpolate: /\{\{(.+?)\}\}/g
+  	};
+  	$.ajax({
+  		url: '/groups.json'
+  	}).success(function(response){
+  		displayGroups(response);
+  	})
+    // var x = '{"groups_status":"done","group_total":6,"groups":[{"title":"Ask Frankie Ash","url":"http://localhost:3000/group/34","status":"populated"},{"title":"All about YouTube","url":"http://localhost:3000/group/35","status":"populated"},{"title":"Business Book Worms","url":"http://localhost:3000/group/36","status":"populated"},{"title":"Buddy-Reads (The Fictional Reader)","url":"http://localhost:3000/group/37","status":"populated"},{"title":"Lieblings Baes","url":"http://localhost:3000/group/38","status":"populated"},{"title":"Imaging Mind","url":"http://localhost:3000/group/39","status":"populated"}]}'
+  	// displayGroups(JSON.parse(x));
+  }
+  return { setup : setup };
+}();

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     user = User.find_by_id(auth["uid"]) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
     GroupsCreator.new(user).delay.create_and_populate!
-    redirect_to listgroups_path, notice: "You have successfully logged in."
+    redirect_to groups_path, notice: "You have successfully logged in."
   end
 
   def destroy
