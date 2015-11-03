@@ -27,8 +27,11 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @members = @group.members.includes(:location)
 
+    # TODO: move to helper
+    @member_data = member_map_data(
+      @group.members.includes(:location)
+    )
 
     #client = Goodreads::Client.new(oauth_token: current_user.oauth_token, api_key: 'UpIly3BURwhZ52tmj4ag', api_secret: GOODREADS_API_SECRET)
     #@group_list = client.group_list(current_user.id, 'sort')
@@ -47,6 +50,31 @@ class GroupsController < ApplicationController
         "done"
       else
         "fetching"
+      end
+    end
+
+   # input: array of members
+   # output: array of hashes
+   # [
+   # { name: 'Steve Klebanoff", message_url: 'http://goodreads.com/message/new/5', lat: '53.434343', lng: '4343.4343', city: 'San Diego, CA' },
+   # { ... },
+   # { ... },
+   # ]
+    def member_map_data(members)
+      all_locations = [] # NOTE: could use a hash, would be faster
+
+      # TODO: optimize using pluck
+      members.select {|m| m.location && m.location.city.present?}.map do |m|
+
+        lat, lng = m.location.latitude, m.location.longitude
+        if all_locations.include?(m.location.city)
+          # randomize location
+          lat, lng = Location.randomize_coords(lat, lng)
+        end
+        member_data = {name: m.name, message_url: "http://goodreads.com/message/new/#{m.goodreads_id}", 
+          city: m.location.city, lat: lat, lng: lng}
+        all_locations << m.location.city
+        member_data
       end
     end
 end

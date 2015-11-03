@@ -23,3 +23,18 @@
 - Potentially creating pagination
 
 => Add members to group
+
+TODO for completion:
+- Remove console.log
+- Test with another user
+- Handle users without specified location
+- Save locations in database and then alter duplicate locations in the view
+- Actually get pagination working
+- Optimize calls
+- Updating template to have nicer style
+- If you remove yourself from a group within GoodReads, update in app
+- Do not repopulate on every login (manual refresh?)
+
+FUTURE:
+- Use react template instead?
+- Progress bar or updated count if members populated vs members total

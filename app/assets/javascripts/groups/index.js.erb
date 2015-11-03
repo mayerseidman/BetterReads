@@ -9,21 +9,35 @@ BetterReads.Groups.Index = function() {
 		var groupTemplateText = $('#groupTemplate').html();
 		var groupTemplate = _.template(groupTemplateText);
 		var groups = data["groups"];
-		$(".groupsContainer").html("");
+
+		var groupsContent = '';
 		_.each(groups, function(group){
-			var groupHtml = groupTemplate({name: group.title, status: group.status});
-			$('.groupsContainer').append(groupHtml);		
-		})
+			var groupHtml = groupTemplate(
+				{name: group.title, status: group.status, url: group.url}
+			);
+			groupsContent += groupHtml;		
+		});
+		
+		$('.groupsContainer').html(groupsContent);
 	}
   var setup = function() {
-  	_.templateSettings = {
-  	  interpolate: /\{\{(.+?)\}\}/g
-  	};
-  	$.ajax({
-  		url: '/groups.json'
-  	}).success(function(response){
-  		displayGroups(response);
-  	})
+		_.templateSettings = {
+		    evaluate:    /\{\{(.+?)\}\}/g,
+		    interpolate: /\{\{=(.+?)\}\}/g,
+		    escape:      /\{\{-(.+?)\}\}/g
+		};
+  	var fetchGroups = function() {
+  		$.ajax({
+	  		url: '/groups.json'
+	  	}).success(function(response){
+	  		displayGroups(response);
+	  		if (response["groups_status"] == "done") {
+	  			clearInterval(fetchInterval);
+	  		}
+	  	});
+  	} 
+  	var fetchInterval = setInterval(fetchGroups, 1000);
+  	console.log(fetchInterval);
     // var x = '{"groups_status":"done","group_total":6,"groups":[{"title":"Ask Frankie Ash","url":"http://localhost:3000/group/34","status":"populated"},{"title":"All about YouTube","url":"http://localhost:3000/group/35","status":"populated"},{"title":"Business Book Worms","url":"http://localhost:3000/group/36","status":"populated"},{"title":"Buddy-Reads (The Fictional Reader)","url":"http://localhost:3000/group/37","status":"populated"},{"title":"Lieblings Baes","url":"http://localhost:3000/group/38","status":"populated"},{"title":"Imaging Mind","url":"http://localhost:3000/group/39","status":"populated"}]}'
   	// displayGroups(JSON.parse(x));
   }

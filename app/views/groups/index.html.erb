@@ -14,8 +14,14 @@
 </body> 
 
 <script type='text/template' id='groupTemplate'>
-  Group name: {{ name }}<br/>
-  Group status: {{ status }}<br/>
+  {{ if (status == 'populated') { }}
+    <a href='{{= url }}'>{{= name }}</a>
+  {{ } else { }}
+    {{= name }}
+  {{ } }}
+  <br/>
+  Group status: {{= status }}<br/>
+  <br/>
 </script>
 
 <script type="text/javascript">

@@ -6,7 +6,7 @@
     <%= link_to "Sign in with Goodreads", "/auth/Goodreads" %>
   <% end %>
 </div>
-<div class = "back"> <%= link_to "Back to Groups Index", listgroups_path %> </div>
+<div class = "back"> <%= link_to "Back to Groups Index", groups_path %> </div>
 <body class = "index"> </body> 
 
 <!-- google maps link: https://github.com/apneadiving/Google-Maps-for-Rails -->
@@ -16,16 +16,14 @@
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers([
             
-          <% @members.each do |member| %>
-            <% if member.location %>
-             <% y = "http://www.goodreads.com/message/new/#{member.goodreads_id}" %>
+          <% @member_data.each do |m| %>
             {
-              "lat": "<%= member.location.latitude %>",
-              "lng": "<%= member.location.longitude %>",
-              "infowindow": "<p class = members><%= member.name %> </p><p><%= member.location.city %></p>   <a href='<%= y %>', target='blank'>Message User</a> "
+              "lat": <%= m[:lat] %>,
+              "lng": <%= m[:lng] %>,
+              "infowindow": "<p class = members><%= m[:name] %> </p><p><%= m[:city] %></p>   <a href='<%= m[:message_url] %>', target='blank'>Message User</a> "
             },
-            <% end %>
           <% end %>
+
         ]);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
