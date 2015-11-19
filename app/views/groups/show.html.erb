@@ -17,11 +17,13 @@
         markers = handler.addMarkers([
             
           <% @member_data.each do |m| %>
-            {
-              "lat": <%= m[:lat] %>,
-              "lng": <%= m[:lng] %>,
-              "infowindow": "<p class = members><%= m[:name] %> </p><p><%= m[:city] %></p>   <a href='<%= m[:message_url] %>', target='blank'>Message User</a> "
-            },
+            <% if m[:lat] && m[:lng] %>
+              {
+                "lat": <%= m[:lat] %>,
+                "lng": <%= m[:lng] %>,
+                "infowindow": "<p class=members><%= m[:name] %> </p><p><%= m[:city] %></p>   <a href='<%= m[:message_url] %>' target='blank'>Message User</a>"
+              },
+            <% end %>
           <% end %>
 
         ]);

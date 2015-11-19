@@ -4,6 +4,7 @@ class MemberPopulator
 	end
 
 	def populate
+		user_ids = MemberFetcher.new(@group.goodreads_id).member_ids
 		user_ids.map do |u|
 			profile_url = "https://www.goodreads.com/user/show/#{u}.xml?key=01QcdA8pt51gOUi4UJj6A"
 			profile_contents = Net::HTTP.get(URI.parse(profile_url))
@@ -25,12 +26,4 @@ class MemberPopulator
 		@group.status = "populated"
 		@group.save!
 	end
-
-	private
-		def user_ids
-			url = "https://www.goodreads.com/group/#{@group.goodreads_id}/members?format=xml&key='UpIly3BURwhZ52tmj4ag'" # &page=#{n}
-			member_data =  Net::HTTP.get(URI.parse(url))
-			doc = Nokogiri::HTML(member_data)
-			doc.xpath("//user/id").map(&:text) 
-		end 
 end

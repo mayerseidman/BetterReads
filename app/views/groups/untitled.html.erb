@@ -1,0 +1,11 @@
+
+          <% @members.each do |member| %>
+            <% if member.location %>
+             <% y = "http://www.goodreads.com/message/new/#{member.goodreads_id}" %>
+            {
+              "lat": "<%= member.location.latitude %>",
+              "lng": "<%= member.location.longitude %>",
+              "infowindow": "<p class = members><%= member.name %> </p><p><%= member.location.city %></p>   <a href='<%= y %>', target='blank'>Message User</a> "
+            },
+            <% end %>
+          <% end %>
