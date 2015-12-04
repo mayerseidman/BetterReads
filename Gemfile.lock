@@ -192,6 +192,7 @@ DEPENDENCIES
   jquery-rails
   multi_xml
   nokogiri
+  oauth
   omniauth-oauth
   pg
   pry

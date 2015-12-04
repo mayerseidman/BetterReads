@@ -1,3 +1,15 @@
+# Member Populate Status
+
+- In GroupCreator, store member_count in Group model on database
+- in groups/index, display <group.members.count> / <group.member_total>
+	- update groups.json (groups_controller#index respond_to json)
+		- add returning off member_total
+		- add returning off populated_member_count (group.members.count)
+	- update JS in groups/index.js
+	- update tempalte in groups/index.html.eb
+- add javascript plugin to update an actual progress bar
+
+
 # BetterReads Plan
 
 - Upon login
