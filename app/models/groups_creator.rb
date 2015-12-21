@@ -12,6 +12,7 @@ class GroupsCreator
 				goodreads_id: g.id
 			)
 			group.title = g.title
+			group.num_members = g.users_count
 			unless group.users.include? @user
 				group.users << @user
 			end

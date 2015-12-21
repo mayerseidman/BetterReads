@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002033133) do
+ActiveRecord::Schema.define(version: 20151221041845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20151002033133) do
     t.datetime "updated_at"
     t.integer  "goodreads_id"
     t.string   "status"
+    t.integer  "num_members"
   end
 
   create_table "groups_members", force: true do |t|

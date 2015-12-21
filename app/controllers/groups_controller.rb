@@ -17,7 +17,9 @@ class GroupsController < ApplicationController
           groups: current_user.groups.map do |g|
             { title: g.title,
               url: group_url(g),
-              status: g.status }
+              status: g.status, 
+              total_members: g.num_members,
+              populated_members: g.members.count }
           end
         }
       end

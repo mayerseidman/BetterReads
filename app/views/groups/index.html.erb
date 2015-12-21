@@ -21,6 +21,12 @@
   {{ } }}
   <br/>
   Group status: {{= status }}<br/>
+  {{= populated_members }} / {{= total_members }}
+  <div style='width: 300px; border: 1px solid black;'>
+    <div style='width: {{= percent_populated }}%; background-color: green;'>
+      &nbsp;
+    </div>
+  </div>
   <br/>
 </script>
 

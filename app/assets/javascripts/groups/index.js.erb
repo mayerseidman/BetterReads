@@ -12,8 +12,20 @@ BetterReads.Groups.Index = function() {
 
 		var groupsContent = '';
 		_.each(groups, function(group){
+			if (group.total_members == 0) {
+				var percentPopulated = 100;
+			} else {
+				var percentPopulated = (group.populated_members/group.total_members) * 100;
+			}
+			console.log('populated', percentPopulated);
 			var groupHtml = groupTemplate(
-				{name: group.title, status: group.status, url: group.url}
+				{
+					name: group.title,
+					status: group.status,
+					url: group.url, 
+					populated_members: group.populated_members,
+					total_members: group.total_members,
+					percent_populated: percentPopulated }
 			);
 			groupsContent += groupHtml;		
 		});
