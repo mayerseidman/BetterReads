@@ -13,9 +13,6 @@ class GroupsCreator
 			)
 			group.title = g.title
 			group.num_members = g.users_count
-			unless group.users.include? @user
-				group.users << @user
-			end
 			group.save!
 			group 
 		end
@@ -26,8 +23,12 @@ class GroupsCreator
 
 	def create_and_populate!
 		groups = create_groups!
-		groups.map do |group|
-			MemberPopulator.new(group).delay.populate
+		groups.each do |group|
+			unless group.users.include? @user
+				group.users << @user
+				MemberPopulator.new(group).delay.populate
+			end
 		end
+		groups
 	end
 end
